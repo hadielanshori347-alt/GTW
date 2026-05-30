@@ -13,12 +13,11 @@
   --bg:#f0f4f8;--white:#fff;--danger:#dc2626;--success:#16a34a;
   --text:#1f2937;--text-light:#6b7280;--border:#d1d5db;
   --shadow:0 2px 12px rgba(0,0,0,.10);--radius:10px;
-  --sidebar-w:220px;--sidebar-collapsed:0px;
-  --topbar-h:56px;
+  --sidebar-w:220px;--topbar-h:56px;
 }
 body{font-family:'IBM Plex Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
 
-/* ===== LOGIN ===== */
+/* LOGIN */
 .login-page{min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--primary) 0%,#0f2340 100%)}
 .login-box{background:#fff;border-radius:14px;box-shadow:0 8px 40px rgba(0,0,0,.25);padding:42px 38px;width:100%;max-width:370px}
 .login-logo{text-align:center;margin-bottom:26px}
@@ -29,131 +28,47 @@ body{font-family:'IBM Plex Sans',sans-serif;background:var(--bg);color:var(--tex
 .btn-login:hover{background:var(--primary-light)}
 .login-err{color:var(--danger);font-size:.83rem;text-align:center;margin-top:8px;display:none}
 
-/* ===== APP LAYOUT ===== */
+/* APP */
 #appScreen{display:none;min-height:100vh}
 
 /* SIDEBAR */
-.sidebar{
-  position:fixed;top:0;left:0;bottom:0;
-  width:var(--sidebar-w);
-  background:var(--primary);
-  z-index:200;
-  display:flex;flex-direction:column;
-  transition:transform .25s cubic-bezier(.4,0,.2,1),box-shadow .25s;
-  box-shadow:3px 0 20px rgba(0,0,0,.18);
-  overflow:hidden;
-}
+.sidebar{position:fixed;top:0;left:0;bottom:0;width:var(--sidebar-w);background:var(--primary);z-index:200;display:flex;flex-direction:column;transition:transform .25s cubic-bezier(.4,0,.2,1);box-shadow:3px 0 20px rgba(0,0,0,.18);overflow:hidden}
 .sidebar.collapsed{transform:translateX(calc(-1 * var(--sidebar-w)))}
-.sidebar-brand{
-  display:flex;align-items:center;gap:10px;
-  padding:0 18px;height:var(--topbar-h);
-  border-bottom:1px solid rgba(255,255,255,.12);
-  flex-shrink:0;
-}
+.sidebar-brand{display:flex;align-items:center;gap:10px;padding:0 18px;height:var(--topbar-h);border-bottom:1px solid rgba(255,255,255,.12);flex-shrink:0}
 .sidebar-brand-text{font-family:'IBM Plex Mono',monospace;font-size:1.05rem;font-weight:700;color:#fff;letter-spacing:1px}
 .sidebar-brand-text span{color:var(--accent)}
 .sidebar-nav{flex:1;overflow-y:auto;padding:10px 0}
 .sidebar-nav::-webkit-scrollbar{width:4px}
 .sidebar-nav::-webkit-scrollbar-thumb{background:rgba(255,255,255,.2);border-radius:4px}
-.nav-item{
-  display:flex;align-items:center;gap:12px;
-  padding:11px 18px;
-  color:rgba(255,255,255,.75);
-  cursor:pointer;font-size:.88rem;font-weight:500;
-  border-left:3px solid transparent;
-  transition:background .15s,color .15s,border-color .15s;
-  white-space:nowrap;
-  user-select:none;
-}
+.nav-item{display:flex;align-items:center;gap:12px;padding:11px 18px;color:rgba(255,255,255,.75);cursor:pointer;font-size:.88rem;font-weight:500;border-left:3px solid transparent;transition:background .15s,color .15s,border-color .15s;white-space:nowrap;user-select:none}
 .nav-item:hover{background:rgba(255,255,255,.08);color:#fff}
 .nav-item.active{background:rgba(255,255,255,.13);color:#fff;border-left-color:var(--accent)}
 .nav-item .nav-icon{font-size:1.1rem;width:22px;text-align:center;flex-shrink:0}
-.sidebar-footer{
-  padding:12px 14px;border-top:1px solid rgba(255,255,255,.12);flex-shrink:0;
-}
-.btn-logout{
-  width:100%;display:flex;align-items:center;gap:10px;
-  padding:10px 12px;border-radius:8px;
-  background:rgba(220,38,38,.15);border:1px solid rgba(220,38,38,.3);
-  color:rgba(255,255,255,.85);font-size:.85rem;font-weight:600;
-  cursor:pointer;transition:background .15s;font-family:'IBM Plex Sans',sans-serif;
-}
+.sidebar-footer{padding:12px 14px;border-top:1px solid rgba(255,255,255,.12);flex-shrink:0}
+.btn-logout{width:100%;display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:8px;background:rgba(220,38,38,.15);border:1px solid rgba(220,38,38,.3);color:rgba(255,255,255,.85);font-size:.85rem;font-weight:600;cursor:pointer;transition:background .15s;font-family:'IBM Plex Sans',sans-serif}
 .btn-logout:hover{background:rgba(220,38,38,.4);color:#fff}
-.nav-section-label{
-  font-size:.65rem;font-weight:700;letter-spacing:1.5px;
-  color:rgba(255,255,255,.35);padding:12px 18px 4px;text-transform:uppercase;
-}
+.nav-section-label{font-size:.65rem;font-weight:700;letter-spacing:1.5px;color:rgba(255,255,255,.35);padding:12px 18px 4px;text-transform:uppercase}
 
 /* TOPBAR */
-.topbar{
-  position:fixed;top:0;left:var(--sidebar-w);right:0;height:var(--topbar-h);
-  background:#fff;
-  border-bottom:1px solid var(--border);
-  display:flex;align-items:center;gap:12px;
-  padding:0 20px;z-index:100;
-  box-shadow:0 1px 6px rgba(0,0,0,.06);
-  transition:left .25s cubic-bezier(.4,0,.2,1);
-}
+.topbar{position:fixed;top:0;left:var(--sidebar-w);right:0;height:var(--topbar-h);background:#fff;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;padding:0 20px;z-index:100;box-shadow:0 1px 6px rgba(0,0,0,.06);transition:left .25s cubic-bezier(.4,0,.2,1)}
 .topbar.sidebar-collapsed{left:0}
-.topbar-toggle{
-  background:none;border:none;cursor:pointer;
-  padding:6px 8px;border-radius:6px;
-  color:var(--text-light);font-size:1.1rem;
-  transition:background .15s,color .15s;
-  flex-shrink:0;
-}
+.topbar-toggle{background:none;border:none;cursor:pointer;padding:6px 8px;border-radius:6px;color:var(--text-light);font-size:1.1rem;transition:background .15s;flex-shrink:0}
 .topbar-toggle:hover{background:var(--bg);color:var(--primary)}
-.topbar-title{
-  font-weight:700;font-size:.95rem;color:var(--primary);
-  flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-}
-/* INCHARGE SELECTOR */
+.topbar-title{font-weight:700;font-size:.95rem;color:var(--primary);flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .incharge-area{display:flex;align-items:center;gap:10px;flex-shrink:0}
-.incharge-indicator{
-  width:9px;height:9px;border-radius:50%;
-  background:#d1d5db;flex-shrink:0;
-  transition:background .3s,box-shadow .3s;
-}
-.incharge-indicator.active{
-  background:var(--success);
-  box-shadow:0 0 0 3px rgba(22,163,74,.2);
-}
-.user-chip{
-  display:flex;align-items:center;gap:8px;
-  padding:5px 12px 5px 10px;
-  background:var(--bg);border-radius:20px;
-  border:1.5px solid var(--border);
-}
+.incharge-indicator{width:9px;height:9px;border-radius:50%;background:#d1d5db;flex-shrink:0;transition:background .3s,box-shadow .3s}
+.incharge-indicator.active{background:var(--success);box-shadow:0 0 0 3px rgba(22,163,74,.2)}
+.user-chip{display:flex;align-items:center;gap:8px;padding:5px 12px 5px 10px;background:var(--bg);border-radius:20px;border:1.5px solid var(--border)}
 .user-name{font-size:.83rem;font-weight:700;color:var(--primary);font-family:'IBM Plex Mono',monospace}
-.incharge-select-wrap{position:relative}
 .incharge-label{font-size:.72rem;color:var(--text-light);font-weight:600;letter-spacing:.4px;white-space:nowrap}
-.incharge-select{
-  padding:5px 26px 5px 10px;
-  border:1.5px solid var(--border);border-radius:8px;
-  font-size:.82rem;font-family:'IBM Plex Sans',sans-serif;
-  font-weight:600;color:var(--primary);
-  background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 8px center;
-  -webkit-appearance:none;appearance:none;
-  cursor:pointer;outline:none;
-  transition:border-color .15s,box-shadow .15s;
-  min-width:130px;
-}
-.incharge-select:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(30,58,95,.1)}
+.incharge-select{padding:5px 26px 5px 10px;border:1.5px solid var(--border);border-radius:8px;font-size:.82rem;font-family:'IBM Plex Sans',sans-serif;font-weight:600;color:var(--primary);background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 8px center;-webkit-appearance:none;appearance:none;cursor:pointer;outline:none;transition:border-color .15s;min-width:130px}
+.incharge-select:focus{border-color:var(--primary)}
 .incharge-select.has-value{border-color:var(--success);color:var(--success)}
 
-/* MAIN CONTENT */
-.main-content{
-  margin-left:var(--sidebar-w);
-  padding-top:var(--topbar-h);
-  min-height:100vh;
-  transition:margin-left .25s cubic-bezier(.4,0,.2,1);
-}
+/* MAIN */
+.main-content{margin-left:var(--sidebar-w);padding-top:var(--topbar-h);min-height:100vh;transition:margin-left .25s cubic-bezier(.4,0,.2,1)}
 .main-content.sidebar-collapsed{margin-left:0}
-
-/* OVERLAY for mobile */
-.sidebar-overlay{
-  display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:190;
-}
+.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:190}
 .sidebar-overlay.show{display:block}
 
 /* PAGES */
@@ -161,7 +76,7 @@ body{font-family:'IBM Plex Sans',sans-serif;background:var(--bg);color:var(--tex
 .container{max-width:1100px;margin:28px auto;padding:0 20px}
 .card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);padding:24px 28px;margin-bottom:22px}
 .card-title{font-size:1rem;font-weight:700;color:var(--primary);margin-bottom:18px;padding-bottom:10px;border-bottom:2px solid var(--bg);display:flex;align-items:center;gap:8px}
-.form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px}
+.form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
 .form-group{display:flex;flex-direction:column;gap:5px}
 .form-group label{font-size:.75rem;font-weight:600;color:var(--text-light);text-transform:uppercase;letter-spacing:.5px}
 .form-group input,.form-group select,.form-group textarea{padding:8px 11px;border:1.5px solid var(--border);border-radius:7px;font-size:.9rem;outline:none;transition:border .15s;background:#fafafa;font-family:'IBM Plex Sans',sans-serif}
@@ -174,6 +89,7 @@ body{font-family:'IBM Plex Sans',sans-serif;background:var(--bg);color:var(--tex
 .btn-danger{background:var(--danger);color:#fff}.btn-danger:hover{background:#b91c1c}
 .btn-sm{padding:4px 11px;font-size:.78rem}
 .btn-gray{background:#e5e7eb;color:#374151}
+.btn-success{background:var(--success);color:#fff}
 .table-wrap{overflow-x:auto}
 table{width:100%;border-collapse:collapse;font-size:.87rem}
 thead tr{background:var(--primary);color:#fff}
@@ -188,28 +104,54 @@ tbody td{padding:9px 13px;vertical-align:middle}
 .badge-blue{background:#dbeafe;color:#1d4ed8}
 .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px;margin-bottom:24px}
 .stat-card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);padding:20px 22px;border-left:4px solid var(--primary)}
-.stat-card.accent{border-left-color:var(--accent)}
-.stat-card.success{border-left-color:var(--success)}
-.stat-card.danger{border-left-color:var(--danger)}
+.stat-card.accent{border-left-color:var(--accent)}.stat-card.success{border-left-color:var(--success)}.stat-card.danger{border-left-color:var(--danger)}
 .stat-label{font-size:.73rem;font-weight:600;color:var(--text-light);text-transform:uppercase;letter-spacing:.5px}
 .stat-value{font-size:1.9rem;font-weight:800;color:var(--primary);margin-top:4px;font-family:'IBM Plex Mono',monospace}
-.stat-card.accent .stat-value{color:var(--accent)}
-.stat-card.success .stat-value{color:var(--success)}
-.stat-card.danger .stat-value{color:var(--danger)}
+.stat-card.accent .stat-value{color:var(--accent)}.stat-card.success .stat-value{color:var(--success)}.stat-card.danger .stat-value{color:var(--danger)}
 #toast{position:fixed;bottom:26px;right:26px;background:var(--primary);color:#fff;padding:12px 20px;border-radius:8px;font-size:.9rem;box-shadow:0 4px 16px rgba(0,0,0,.18);display:none;z-index:9999;font-weight:600}
 #toast.success{background:var(--success)}#toast.error{background:var(--danger)}
 .page-title{font-size:1.2rem;font-weight:800;color:var(--primary);margin-bottom:20px;display:flex;align-items:center;gap:8px}
 .tabs{display:flex;gap:0;margin-bottom:0}
-.tab-btn{padding:9px 22px;border:none;background:#e5e7eb;cursor:pointer;font-size:.87rem;font-weight:600;color:#6b7280;border-radius:8px 8px 0 0;transition:background .15s,color .15s;font-family:'IBM Plex Sans',sans-serif}
+.tab-btn{padding:9px 22px;border:none;background:#e5e7eb;cursor:pointer;font-size:.87rem;font-weight:600;color:#6b7280;border-radius:8px 8px 0 0;transition:background .15s;font-family:'IBM Plex Sans',sans-serif}
 .tab-btn.active{background:var(--primary);color:#fff}
 .tab-content{display:none}.tab-content.active{display:block}
 .tab-content>.card:first-child{border-radius:0 10px 10px 10px}
 .filter-row{display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap;align-items:flex-end}
 .filter-row input[type=date]{padding:7px 10px;border:1.5px solid var(--border);border-radius:7px;font-size:.87rem;font-family:'IBM Plex Sans',sans-serif}
+
+/* ===== OB/HVS PHASE 2: INPUT BARANG ===== */
+.phase-panel{display:none}
+.phase-panel.active{display:block}
+.track-header{background:linear-gradient(135deg,var(--primary),var(--primary-light));border-radius:var(--radius);padding:18px 24px;margin-bottom:18px;color:#fff;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.track-code{font-family:'IBM Plex Mono',monospace;font-size:1.3rem;font-weight:700;letter-spacing:2px;color:var(--accent)}
+.track-meta{font-size:.82rem;opacity:.8;margin-top:3px}
+.tujuan-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.tujuan-tab{padding:8px 18px;border-radius:8px;border:2px solid var(--border);background:#fff;color:var(--text-light);font-weight:600;font-size:.85rem;cursor:pointer;transition:all .15s;font-family:'IBM Plex Sans',sans-serif}
+.tujuan-tab:hover{border-color:var(--primary-light);color:var(--primary)}
+.tujuan-tab.active{background:var(--primary);border-color:var(--primary);color:#fff}
+.tujuan-tab .tab-count{display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:20px;padding:0 5px;background:rgba(255,255,255,.25);border-radius:10px;font-size:.72rem;margin-left:6px;font-family:'IBM Plex Mono',monospace}
+.tujuan-tab:not(.active) .tab-count{background:var(--accent);color:#fff}
+.item-input-row{display:flex;gap:10px;margin-bottom:14px;align-items:flex-end;flex-wrap:wrap}
+.item-input-row .form-group{flex:1;min-width:140px}
+.awb-display{font-family:'IBM Plex Mono',monospace;background:#f0f4f8;border:1.5px solid var(--border);border-radius:7px;padding:8px 11px;font-size:.88rem;color:var(--text-light)}
+
+/* COMBOBOX custom */
+.combo-wrap{position:relative}
+.combo-wrap input{width:100%}
+.combo-list{position:absolute;top:100%;left:0;right:0;background:#fff;border:1.5px solid var(--primary-light);border-top:none;border-radius:0 0 7px 7px;max-height:160px;overflow-y:auto;z-index:50;box-shadow:0 4px 12px rgba(0,0,0,.1);display:none}
+.combo-list.open{display:block}
+.combo-item{padding:8px 12px;cursor:pointer;font-size:.88rem;transition:background .1s}
+.combo-item:hover{background:#f0f4ff;color:var(--primary)}
+
+/* Progress bar item count */
+.item-stats-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.item-stat{background:#fff;border-radius:8px;padding:10px 16px;box-shadow:var(--shadow);border-left:3px solid var(--primary);font-size:.85rem;cursor:pointer;transition:all .15s}
+.item-stat:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(0,0,0,.12)}
+.item-stat.active{border-left-color:var(--accent);background:#fffbf0}
+.item-stat-label{color:var(--text-light);font-size:.72rem;font-weight:600;text-transform:uppercase}
+.item-stat-val{font-family:'IBM Plex Mono',monospace;font-weight:800;color:var(--primary);font-size:1.2rem}
+
 @media(max-width:700px){
-  .sidebar{width:var(--sidebar-w)}
-  .sidebar:not(.collapsed){transform:translateX(0)}
-  .sidebar.collapsed{transform:translateX(calc(-1 * var(--sidebar-w)))}
   .main-content{margin-left:0!important}
   .topbar{left:0!important}
   .container{padding:0 10px;margin:12px auto}
@@ -217,12 +159,14 @@ tbody td{padding:9px 13px;vertical-align:middle}
   .form-grid{grid-template-columns:1fr}
   .incharge-label{display:none}
   .user-name{display:none}
+  .tujuan-tab{padding:6px 12px;font-size:.8rem}
+  .track-code{font-size:1rem}
 }
 </style>
 </head>
 <body>
 
-<!-- ===== LOGIN ===== -->
+<!-- LOGIN -->
 <div id="loginScreen" class="login-page">
   <div class="login-box">
     <div class="login-logo">
@@ -236,12 +180,10 @@ tbody td{padding:9px 13px;vertical-align:middle}
   </div>
 </div>
 
-<!-- ===== APP ===== -->
+<!-- APP -->
 <div id="appScreen">
-  <!-- Sidebar Overlay (mobile) -->
   <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
 
-  <!-- SIDEBAR -->
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-brand">
       <span style="font-size:1.3rem">🚀</span>
@@ -249,48 +191,27 @@ tbody td{padding:9px 13px;vertical-align:middle}
     </div>
     <nav class="sidebar-nav">
       <div class="nav-section-label">Menu</div>
-      <div class="nav-item active" id="nav-dashboard" onclick="showPage('dashboard')">
-        <span class="nav-icon">📊</span><span>Dashboard</span>
-      </div>
-      <div class="nav-item" id="nav-ob" onclick="showPage('ob')">
-        <span class="nav-icon">📦</span><span>Outbound (OB)</span>
-      </div>
-      <div class="nav-item" id="nav-ib" onclick="showPage('ib')">
-        <span class="nav-icon">📥</span><span>Inbound (IB)</span>
-      </div>
-      <div class="nav-item" id="nav-hvs" onclick="showPage('hvs')">
-        <span class="nav-icon">🏷️</span><span>HVS</span>
-      </div>
+      <div class="nav-item active" id="nav-dashboard" onclick="showPage('dashboard')"><span class="nav-icon">📊</span><span>Dashboard</span></div>
+      <div class="nav-item" id="nav-ob" onclick="showPage('ob')"><span class="nav-icon">📦</span><span>Outbound (OB)</span></div>
+      <div class="nav-item" id="nav-ib" onclick="showPage('ib')"><span class="nav-icon">📥</span><span>Inbound (IB)</span></div>
+      <div class="nav-item" id="nav-hvs" onclick="showPage('hvs')"><span class="nav-icon">🏷️</span><span>HVS</span></div>
       <div class="nav-section-label">Operasional</div>
-      <div class="nav-item" id="nav-scan" onclick="showPage('scan')">
-        <span class="nav-icon">🔍</span><span>Scan</span>
-      </div>
-      <div class="nav-item" id="nav-driver" onclick="showPage('driver')">
-        <span class="nav-icon">🚚</span><span>Driver</span>
-      </div>
-      <div class="nav-item" id="nav-manifest" onclick="showPage('manifest')">
-        <span class="nav-icon">📋</span><span>Manifest</span>
-      </div>
+      <div class="nav-item" id="nav-scan" onclick="showPage('scan')"><span class="nav-icon">🔍</span><span>Scan</span></div>
+      <div class="nav-item" id="nav-driver" onclick="showPage('driver')"><span class="nav-icon">🚚</span><span>Driver</span></div>
+      <div class="nav-item" id="nav-manifest" onclick="showPage('manifest')"><span class="nav-icon">📋</span><span>Manifest</span></div>
     </nav>
     <div class="sidebar-footer">
-      <button class="btn-logout" onclick="doLogout()">
-        <span>🚪</span><span>Logout</span>
-      </button>
+      <button class="btn-logout" onclick="doLogout()"><span>🚪</span><span>Logout</span></button>
     </div>
   </aside>
 
-  <!-- TOPBAR -->
   <header class="topbar" id="topbar">
-    <button class="topbar-toggle" onclick="toggleSidebar()" title="Toggle Sidebar">
-      <span id="toggleIcon">☰</span>
-    </button>
+    <button class="topbar-toggle" onclick="toggleSidebar()"><span id="toggleIcon">☰</span></button>
     <div class="topbar-title" id="topbarTitle">📊 Dashboard</div>
     <div class="incharge-area">
-      <div class="user-chip">
-        <span class="user-name" id="navUser">-</span>
-      </div>
+      <div class="user-chip"><span class="user-name" id="navUser">-</span></div>
       <div class="incharge-indicator" id="inchargeIndicator"></div>
-      <div class="incharge-select-wrap">
+      <div>
         <div class="incharge-label">Incharge</div>
         <select class="incharge-select" id="globalIncharge" onchange="onGlobalInchargeChange()">
           <option value="">-- Pilih Incharge --</option>
@@ -301,7 +222,6 @@ tbody td{padding:9px 13px;vertical-align:middle}
 
   <div id="toast"></div>
 
-  <!-- MAIN CONTENT -->
   <main class="main-content" id="mainContent">
 
     <!-- DASHBOARD -->
@@ -322,6 +242,13 @@ tbody td{padding:9px 13px;vertical-align:middle}
           </table></div>
         </div>
         <div class="card">
+          <div class="card-title">🏷️ HVS Terbaru</div>
+          <div class="table-wrap"><table>
+            <thead><tr><th>No Track</th><th>Incharge</th><th>Service</th><th>Tujuan</th><th>Tanggal</th><th>Status</th><th>AWB</th></tr></thead>
+            <tbody id="tbDashHVS"><tr><td colspan="7" style="text-align:center;padding:18px;color:#999">Memuat...</td></tr></tbody>
+          </table></div>
+        </div>
+        <div class="card">
           <div class="card-title">📥 IB Terbaru</div>
           <div class="table-wrap"><table>
             <thead><tr><th>No HVS</th><th>Incharge</th><th>Service</th><th>From</th><th>Tujuan</th><th>Tanggal</th><th>Status</th></tr></thead>
@@ -334,35 +261,158 @@ tbody td{padding:9px 13px;vertical-align:middle}
     <!-- OB -->
     <div id="page-ob" class="page">
       <div class="container">
-        <div class="page-title">📦 Input Outbound (OB)</div>
-        <div class="card">
-          <div class="card-title">➕ Tambah OB Baru</div>
-          <div class="form-grid">
-            <div class="form-group"><label>No Track / Bag</label><input type="text" id="ob_no_track" placeholder="Masukkan No Track"/></div>
-            <div class="form-group"><label>Incharge</label><select id="ob_incharge" onchange="loadTujuanOB()"><option value="">-- Pilih Incharge --</option></select></div>
-            <div class="form-group"><label>Service</label><select id="ob_service" onchange="loadTujuanOB()"><option value="">-- Pilih Service --</option><option>SAMEDAY</option><option>NEXTDAY</option></select></div>
-            <div class="form-group"><label>Tujuan</label><select id="ob_tujuan"><option value="">-- Pilih Tujuan --</option></select></div>
-            <div class="form-group"><label>Tanggal & Waktu</label><input type="datetime-local" id="ob_created_date"/></div>
-            <div class="form-group"><label>Status</label><select id="ob_status"><option>PROSES</option><option>SELESAI</option><option>PENDING</option></select></div>
-            <div class="form-group"><label>Total AWB</label><input type="number" id="ob_total_awb" placeholder="0" min="0"/></div>
-            <div class="form-group"><label>URL Foto</label><input type="url" id="ob_foto_url" placeholder="https://..."/></div>
+        <div class="page-title">📦 Outbound (OB)</div>
+
+        <!-- PHASE 1: Form buat OB baru -->
+        <div id="ob-phase1" class="phase-panel active">
+          <div class="card">
+            <div class="card-title">➕ Buat OB Baru</div>
+            <div class="form-grid" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr))">
+              <div class="form-group">
+                <label>Service</label>
+                <select id="ob_service" onchange="loadTujuanOBGlobal()">
+                  <option value="">-- Pilih Service --</option>
+                  <option>SAMEDAY</option><option>NEXTDAY</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Tujuan</label>
+                <div class="combo-wrap">
+                  <input type="text" id="ob_tujuan_input" placeholder="Ketik atau pilih tujuan..." autocomplete="off" oninput="filterCombo('ob_tujuan_input','ob_tujuan_list')" onfocus="openCombo('ob_tujuan_list')" onblur="setTimeout(()=>closeCombo('ob_tujuan_list'),150)"/>
+                  <div class="combo-list" id="ob_tujuan_list"></div>
+                </div>
+              </div>
+              <div class="form-group"><label>Tanggal & Waktu</label><input type="datetime-local" id="ob_created_date"/></div>
+              <div class="form-group"><label>Status</label><select id="ob_status"><option>PROSES</option><option>SELESAI</option><option>PENDING</option></select></div>
+              <div class="form-group"><label>URL Foto</label><input type="url" id="ob_foto_url" placeholder="https://..."/></div>
+            </div>
+            <div style="margin-top:14px;padding:12px 14px;background:#f0f4f8;border-radius:8px;font-size:.85rem;color:var(--text-light)">
+              💡 No Track akan digenerate otomatis. Setelah simpan, Anda bisa langsung input barang per tujuan.
+            </div>
+            <div class="form-actions">
+              <button class="btn btn-primary" id="btnObSimpan" onclick="simpanOB()">💾 Buat OB & Input Barang</button>
+            </div>
           </div>
-          <div class="form-actions">
-            <button class="btn btn-primary" id="btnObSimpan" onclick="simpanOB()">💾 Simpan</button>
-            <button class="btn btn-gray" onclick="resetOB()">Reset</button>
+          <div class="card">
+            <div class="card-title">📋 Data OB</div>
+            <div class="filter-row">
+              <input type="date" id="ob_filterTgl"/>
+              <button class="btn btn-primary btn-sm" onclick="loadOB()">🔍 Filter</button>
+              <button class="btn btn-sm btn-gray" onclick="clearFilterOB()">Reset</button>
+            </div>
+            <div class="table-wrap"><table>
+              <thead><tr><th>#</th><th>No Track</th><th>Incharge</th><th>Service</th><th>Tujuan</th><th>Tanggal</th><th>Status</th><th>AWB</th><th>Aksi</th></tr></thead>
+              <tbody id="tbOB"><tr><td colspan="9" style="text-align:center;padding:18px;color:#999">Memuat...</td></tr></tbody>
+            </table></div>
           </div>
         </div>
-        <div class="card">
-          <div class="card-title">📋 Data OB</div>
-          <div class="filter-row">
-            <input type="date" id="ob_filterTgl"/>
-            <button class="btn btn-primary btn-sm" onclick="loadOB()">🔍 Filter</button>
-            <button class="btn btn-sm btn-gray" onclick="clearFilterOB()">Reset</button>
+
+        <!-- PHASE 2: Input Barang -->
+        <div id="ob-phase2" class="phase-panel">
+          <div class="track-header">
+            <div>
+              <div class="track-code" id="ob_track_display">-</div>
+              <div class="track-meta" id="ob_track_meta">-</div>
+            </div>
+            <button class="btn btn-gray btn-sm" onclick="backToOBPhase1()">← Kembali ke List OB</button>
           </div>
-          <div class="table-wrap"><table>
-            <thead><tr><th>#</th><th>No Track</th><th>Incharge</th><th>Service</th><th>Tujuan</th><th>Tanggal</th><th>Status</th><th>AWB</th><th>Aksi</th></tr></thead>
-            <tbody id="tbOB"><tr><td colspan="9" style="text-align:center;padding:18px;color:#999">Memuat...</td></tr></tbody>
-          </table></div>
+
+          <!-- Tujuan tabs -->
+          <div class="card" style="padding:18px 20px">
+            <div class="card-title" style="margin-bottom:12px">🗂️ Pilih Tujuan untuk Input Barang</div>
+            <div class="tujuan-tabs" id="ob_tujuan_tabs"></div>
+
+            <div id="ob_item_area">
+              <div style="color:var(--text-light);font-size:.88rem;padding:20px 0">Klik tujuan di atas untuk mulai input barang.</div>
+            </div>
+          </div>
+
+          <!-- Summary per tujuan -->
+          <div class="card">
+            <div class="card-title">📊 Ringkasan Barang per Tujuan</div>
+            <div id="ob_summary_stats" class="item-stats-row"></div>
+            <div class="table-wrap"><table>
+              <thead><tr><th>#</th><th>AWB</th><th>Tujuan</th><th>Keterangan</th><th>Waktu</th><th>Aksi</th></tr></thead>
+              <tbody id="tbObItems"><tr><td colspan="6" style="text-align:center;padding:14px;color:#999">Belum ada barang</td></tr></tbody>
+            </table></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HVS -->
+    <div id="page-hvs" class="page">
+      <div class="container">
+        <div class="page-title">🏷️ HVS</div>
+
+        <!-- PHASE 1 -->
+        <div id="hvs-phase1" class="phase-panel active">
+          <div class="card">
+            <div class="card-title">➕ Buat HVS Baru</div>
+            <div class="form-grid" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr))">
+              <div class="form-group">
+                <label>Service</label>
+                <select id="hvs_service" onchange="loadTujuanHVSGlobal()">
+                  <option value="">-- Pilih Service --</option>
+                  <option>SAMEDAY</option><option>NEXTDAY</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Tujuan</label>
+                <div class="combo-wrap">
+                  <input type="text" id="hvs_tujuan_input" placeholder="Ketik atau pilih tujuan..." autocomplete="off" oninput="filterCombo('hvs_tujuan_input','hvs_tujuan_list')" onfocus="openCombo('hvs_tujuan_list')" onblur="setTimeout(()=>closeCombo('hvs_tujuan_list'),150)"/>
+                  <div class="combo-list" id="hvs_tujuan_list"></div>
+                </div>
+              </div>
+              <div class="form-group"><label>Tanggal & Waktu</label><input type="datetime-local" id="hvs_created_date"/></div>
+              <div class="form-group"><label>Status</label><select id="hvs_status"><option>PROSES</option><option>SELESAI</option><option>PENDING</option></select></div>
+              <div class="form-group"><label>URL Foto</label><input type="url" id="hvs_foto_url" placeholder="https://..."/></div>
+            </div>
+            <div style="margin-top:14px;padding:12px 14px;background:#f0f4f8;border-radius:8px;font-size:.85rem;color:var(--text-light)">
+              💡 No HVS akan digenerate otomatis. Setelah simpan, Anda bisa langsung input barang per tujuan.
+            </div>
+            <div class="form-actions">
+              <button class="btn btn-primary" id="btnHvsSimpan" onclick="simpanHVS()">💾 Buat HVS & Input Barang</button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title">📋 Data HVS</div>
+            <div class="filter-row">
+              <input type="date" id="hvs_filterTgl"/>
+              <button class="btn btn-primary btn-sm" onclick="loadHVS()">🔍 Filter</button>
+              <button class="btn btn-sm btn-gray" onclick="clearFilterHVS()">Reset</button>
+            </div>
+            <div class="table-wrap"><table>
+              <thead><tr><th>#</th><th>No Track</th><th>Incharge</th><th>Service</th><th>Tujuan</th><th>Tanggal</th><th>Status</th><th>AWB</th><th>Aksi</th></tr></thead>
+              <tbody id="tbHVS"><tr><td colspan="9" style="text-align:center;padding:18px;color:#999">Memuat...</td></tr></tbody>
+            </table></div>
+          </div>
+        </div>
+
+        <!-- PHASE 2 -->
+        <div id="hvs-phase2" class="phase-panel">
+          <div class="track-header">
+            <div>
+              <div class="track-code" id="hvs_track_display">-</div>
+              <div class="track-meta" id="hvs_track_meta">-</div>
+            </div>
+            <button class="btn btn-gray btn-sm" onclick="backToHVSPhase1()">← Kembali ke List HVS</button>
+          </div>
+          <div class="card" style="padding:18px 20px">
+            <div class="card-title" style="margin-bottom:12px">🗂️ Pilih Tujuan untuk Input Barang</div>
+            <div class="tujuan-tabs" id="hvs_tujuan_tabs"></div>
+            <div id="hvs_item_area">
+              <div style="color:var(--text-light);font-size:.88rem;padding:20px 0">Klik tujuan di atas untuk mulai input barang.</div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title">📊 Ringkasan Barang per Tujuan</div>
+            <div id="hvs_summary_stats" class="item-stats-row"></div>
+            <div class="table-wrap"><table>
+              <thead><tr><th>#</th><th>AWB</th><th>Tujuan</th><th>Keterangan</th><th>Waktu</th><th>Aksi</th></tr></thead>
+              <tbody id="tbHvsItems"><tr><td colspan="6" style="text-align:center;padding:14px;color:#999">Belum ada barang</td></tr></tbody>
+            </table></div>
+          </div>
         </div>
       </div>
     </div>
@@ -399,42 +449,6 @@ tbody td{padding:9px 13px;vertical-align:middle}
           <div class="table-wrap"><table>
             <thead><tr><th>#</th><th>No HVS</th><th>Incharge</th><th>Service</th><th>From</th><th>Tujuan</th><th>Tanggal</th><th>Status</th><th>AWB</th><th>Aksi</th></tr></thead>
             <tbody id="tbIB"><tr><td colspan="10" style="text-align:center;padding:18px;color:#999">Memuat...</td></tr></tbody>
-          </table></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- HVS -->
-    <div id="page-hvs" class="page">
-      <div class="container">
-        <div class="page-title">🏷️ Input HVS</div>
-        <div class="card">
-          <div class="card-title">➕ Tambah HVS Baru</div>
-          <div class="form-grid">
-            <div class="form-group"><label>No Track</label><input type="text" id="hvs_no_track" placeholder="Masukkan No Track"/></div>
-            <div class="form-group"><label>Incharge</label><select id="hvs_incharge" onchange="loadTujuanHVS()"><option value="">-- Pilih Incharge --</option></select></div>
-            <div class="form-group"><label>Service</label><select id="hvs_service" onchange="loadTujuanHVS()"><option>SAMEDAY</option><option>NEXTDAY</option></select></div>
-            <div class="form-group"><label>Tujuan</label><select id="hvs_tujuan"><option value="">-- Pilih Tujuan --</option></select></div>
-            <div class="form-group"><label>Tanggal & Waktu</label><input type="datetime-local" id="hvs_created_date"/></div>
-            <div class="form-group"><label>Status</label><select id="hvs_status"><option>PROSES</option><option>SELESAI</option><option>PENDING</option></select></div>
-            <div class="form-group"><label>Total AWB</label><input type="number" id="hvs_total_awb" placeholder="0" min="0"/></div>
-            <div class="form-group"><label>URL Foto</label><input type="url" id="hvs_foto_url" placeholder="https://..."/></div>
-          </div>
-          <div class="form-actions">
-            <button class="btn btn-primary" id="btnHvsSimpan" onclick="simpanHVS()">💾 Simpan</button>
-            <button class="btn btn-gray" onclick="resetHVS()">Reset</button>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-title">📋 Data HVS</div>
-          <div class="filter-row">
-            <input type="date" id="hvs_filterTgl"/>
-            <button class="btn btn-primary btn-sm" onclick="loadHVS()">🔍 Filter</button>
-            <button class="btn btn-sm btn-gray" onclick="clearFilterHVS()">Reset</button>
-          </div>
-          <div class="table-wrap"><table>
-            <thead><tr><th>#</th><th>No Track</th><th>Incharge</th><th>Service</th><th>Tujuan</th><th>Tanggal</th><th>Status</th><th>AWB</th><th>Aksi</th></tr></thead>
-            <tbody id="tbHVS"><tr><td colspan="9" style="text-align:center;padding:18px;color:#999">Memuat...</td></tr></tbody>
           </table></div>
         </div>
       </div>
@@ -605,40 +619,16 @@ tbody td{padding:9px 13px;vertical-align:middle}
 
 <script>
 // ============================================================
-// CONFIG
+// CONFIG & API
 // ============================================================
 const SUPABASE_URL = "https://tbopoplkwvpdnbrhsqmk.supabase.co";
 const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRib3BvcGxrd3ZwZG5icmhzcW1rIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAxMTAyMDMsImV4cCI6MjA5NTY4NjIwM30.6SuI675lGX_1kRqMCCBN2Sxx96BKgStNy8oNSq8c3Sk";
-const HEADERS = {
-  "apikey": SUPABASE_KEY,
-  "Authorization": `Bearer ${SUPABASE_KEY}`,
-  "Content-Type": "application/json",
-  "Prefer": "return=representation"
-};
+const H = {"apikey":SUPABASE_KEY,"Authorization":`Bearer ${SUPABASE_KEY}`,"Content-Type":"application/json","Prefer":"return=representation"};
 
-// ============================================================
-// API
-// ============================================================
-async function dbGet(table, params="") {
-  const r = await fetch(`${SUPABASE_URL}/rest/v1/${table}?${params}`, {headers:HEADERS});
-  if (!r.ok) throw new Error(await r.text());
-  return r.json();
-}
-async function dbInsert(table, data) {
-  const r = await fetch(`${SUPABASE_URL}/rest/v1/${table}`, {method:"POST",headers:HEADERS,body:JSON.stringify(data)});
-  if (!r.ok) throw new Error(await r.text());
-  return r.json();
-}
-async function dbUpdate(table, id, data) {
-  const r = await fetch(`${SUPABASE_URL}/rest/v1/${table}?id=eq.${id}`, {method:"PATCH",headers:HEADERS,body:JSON.stringify(data)});
-  if (!r.ok) throw new Error(await r.text());
-  return r.json();
-}
-async function dbDelete(table, id) {
-  const r = await fetch(`${SUPABASE_URL}/rest/v1/${table}?id=eq.${id}`, {method:"DELETE",headers:HEADERS});
-  if (!r.ok) throw new Error(await r.text());
-  return true;
-}
+async function dbGet(t,p=""){const r=await fetch(`${SUPABASE_URL}/rest/v1/${t}?${p}`,{headers:H});if(!r.ok)throw new Error(await r.text());return r.json();}
+async function dbInsert(t,d){const r=await fetch(`${SUPABASE_URL}/rest/v1/${t}`,{method:"POST",headers:H,body:JSON.stringify(d)});if(!r.ok)throw new Error(await r.text());return r.json();}
+async function dbUpdate(t,id,d){const r=await fetch(`${SUPABASE_URL}/rest/v1/${t}?id=eq.${id}`,{method:"PATCH",headers:H,body:JSON.stringify(d)});if(!r.ok)throw new Error(await r.text());return r.json();}
+async function dbDelete(t,id){const r=await fetch(`${SUPABASE_URL}/rest/v1/${t}?id=eq.${id}`,{method:"DELETE",headers:H});if(!r.ok)throw new Error(await r.text());return true;}
 
 // ============================================================
 // AUTH
@@ -647,119 +637,157 @@ function getSession(){const s=sessionStorage.getItem("gtw_user");return s?JSON.p
 function setSession(u){sessionStorage.setItem("gtw_user",JSON.stringify(u))}
 function clearSession(){sessionStorage.removeItem("gtw_user")}
 
-async function handleLogin() {
-  const username = document.getElementById("username").value.trim().toUpperCase();
-  const password = document.getElementById("password").value.trim();
-  const btn = document.getElementById("btnLogin");
-  const err = document.getElementById("loginErr");
-  if (!username || !password) { err.style.display="block"; err.textContent="Isi username dan password."; return; }
-  btn.disabled=true; btn.textContent="Memeriksa..."; err.style.display="none";
-  try {
-    const data = await dbGet("data_users", `username=eq.${username}&password=eq.${password}&select=username,user_id`);
-    if (data && data.length > 0) {
-      setSession(data[0]);
-      startApp();
-    } else {
-      err.style.display="block"; err.textContent="Username atau password salah.";
-    }
-  } catch(e) { err.style.display="block"; err.textContent="Gagal terhubung ke server."; }
-  btn.disabled=false; btn.textContent="Masuk";
+async function handleLogin(){
+  const u=document.getElementById("username").value.trim().toUpperCase();
+  const p=document.getElementById("password").value.trim();
+  const btn=document.getElementById("btnLogin");
+  const err=document.getElementById("loginErr");
+  if(!u||!p){err.style.display="block";err.textContent="Isi username dan password.";return;}
+  btn.disabled=true;btn.textContent="Memeriksa...";err.style.display="none";
+  try{
+    const data=await dbGet("data_users",`username=eq.${u}&password=eq.${p}&select=username,user_id`);
+    if(data&&data.length>0){setSession(data[0]);startApp();}
+    else{err.style.display="block";err.textContent="Username atau password salah.";}
+  }catch(e){err.style.display="block";err.textContent="Gagal terhubung ke server.";}
+  btn.disabled=false;btn.textContent="Masuk";
 }
-
-function doLogout() {
-  clearSession();
-  document.getElementById("appScreen").style.display="none";
-  document.getElementById("loginScreen").style.display="flex";
-}
+function doLogout(){clearSession();document.getElementById("appScreen").style.display="none";document.getElementById("loginScreen").style.display="flex";}
 
 // ============================================================
-// SIDEBAR TOGGLE
+// SIDEBAR
 // ============================================================
-let sidebarOpen = true;
-
-function toggleSidebar() {
-  sidebarOpen = !sidebarOpen;
-  const sidebar = document.getElementById("sidebar");
-  const topbar = document.getElementById("topbar");
-  const main = document.getElementById("mainContent");
-  const overlay = document.getElementById("sidebarOverlay");
-  const icon = document.getElementById("toggleIcon");
-  const isMobile = window.innerWidth <= 700;
-
-  if (sidebarOpen) {
-    sidebar.classList.remove("collapsed");
-    icon.textContent = "☰";
-    if (isMobile) {
-      overlay.classList.add("show");
-      topbar.classList.add("sidebar-collapsed");
-      main.classList.add("sidebar-collapsed");
-    } else {
-      topbar.classList.remove("sidebar-collapsed");
-      main.classList.remove("sidebar-collapsed");
-    }
-  } else {
-    sidebar.classList.add("collapsed");
-    topbar.classList.add("sidebar-collapsed");
-    main.classList.add("sidebar-collapsed");
-    overlay.classList.remove("show");
-    icon.textContent = "☰";
+let sidebarOpen=true;
+function toggleSidebar(){
+  sidebarOpen=!sidebarOpen;
+  const sb=document.getElementById("sidebar"),tb=document.getElementById("topbar"),mc=document.getElementById("mainContent"),ov=document.getElementById("sidebarOverlay"),ic=document.getElementById("toggleIcon");
+  const isMobile=window.innerWidth<=700;
+  if(sidebarOpen){
+    sb.classList.remove("collapsed");
+    if(isMobile){ov.classList.add("show");tb.classList.add("sidebar-collapsed");mc.classList.add("sidebar-collapsed");}
+    else{tb.classList.remove("sidebar-collapsed");mc.classList.remove("sidebar-collapsed");}
+  }else{
+    sb.classList.add("collapsed");tb.classList.add("sidebar-collapsed");mc.classList.add("sidebar-collapsed");ov.classList.remove("show");
   }
 }
-
-window.addEventListener("resize", () => {
-  const isMobile = window.innerWidth <= 700;
-  const overlay = document.getElementById("sidebarOverlay");
-  const topbar = document.getElementById("topbar");
-  const main = document.getElementById("mainContent");
-  if (!isMobile && sidebarOpen) {
-    overlay.classList.remove("show");
-    topbar.classList.remove("sidebar-collapsed");
-    main.classList.remove("sidebar-collapsed");
+window.addEventListener("resize",()=>{
+  if(window.innerWidth>700&&sidebarOpen){
+    document.getElementById("sidebarOverlay").classList.remove("show");
+    document.getElementById("topbar").classList.remove("sidebar-collapsed");
+    document.getElementById("mainContent").classList.remove("sidebar-collapsed");
   }
 });
 
 // ============================================================
 // GLOBAL INCHARGE
 // ============================================================
-function onGlobalInchargeChange() {
-  const val = document.getElementById("globalIncharge").value;
-  const indicator = document.getElementById("inchargeIndicator");
-  const sel = document.getElementById("globalIncharge");
-  if (val) {
-    indicator.classList.add("active");
-    sel.classList.add("has-value");
-    // Auto-fill incharge fields on all form pages
-    ["ob_incharge","ib_incharge","hvs_incharge","sob_incharge","sib_incharge","shvs_incharge","mf_incharge"].forEach(id => {
-      const el = document.getElementById(id);
-      if (el && !el.value) el.value = val;
-    });
-  } else {
-    indicator.classList.remove("active");
-    sel.classList.remove("has-value");
-  }
+let _inchargeList=[];
+let _obTujuanList=[];   // tujuan options for current OB incharge+service
+let _hvsTujuanList=[];
+
+function onGlobalInchargeChange(){
+  const val=document.getElementById("globalIncharge").value;
+  const ind=document.getElementById("inchargeIndicator");
+  const sel=document.getElementById("globalIncharge");
+  if(val){ind.classList.add("active");sel.classList.add("has-value");}
+  else{ind.classList.remove("active");sel.classList.remove("has-value");}
+  // auto-fill incharge dropdowns that are still empty
+  ["ib_incharge","sob_incharge","sib_incharge","shvs_incharge","mf_incharge"].forEach(id=>{
+    const el=document.getElementById(id);if(el&&!el.value)el.value=val;
+  });
+  // reload tujuan for OB and HVS
+  loadTujuanOBGlobal();
+  loadTujuanHVSGlobal();
+}
+
+// ============================================================
+// COMBO BOX HELPERS
+// ============================================================
+function buildComboList(listId, items, inputId){
+  const el=document.getElementById(listId);
+  el.innerHTML=items.map(v=>`<div class="combo-item" onmousedown="selectCombo('${inputId}','${listId}','${v}')">${v}</div>`).join('');
+}
+function filterCombo(inputId, listId){
+  const val=document.getElementById(inputId).value.toLowerCase();
+  const items=document.getElementById(listId).querySelectorAll(".combo-item");
+  items.forEach(it=>{it.style.display=it.textContent.toLowerCase().includes(val)?'':'none';});
+  openCombo(listId);
+}
+function openCombo(listId){document.getElementById(listId).classList.add("open");}
+function closeCombo(listId){document.getElementById(listId).classList.remove("open");}
+function selectCombo(inputId,listId,val){document.getElementById(inputId).value=val;closeCombo(listId);}
+
+// ============================================================
+// TUJUAN LOADERS (based on global incharge)
+// ============================================================
+async function loadTujuanOBGlobal(){
+  const inch=document.getElementById("globalIncharge").value;
+  const svc=document.getElementById("ob_service").value;
+  _obTujuanList=[];
+  const list=document.getElementById("ob_tujuan_list");
+  list.innerHTML='';
+  if(!inch||!svc)return;
+  try{
+    const d=await dbGet("data_routing",`incharge=eq.${inch}&service=eq.${svc}&select=tujuan`);
+    _obTujuanList=d.map(r=>r.tujuan);
+    buildComboList("ob_tujuan_list",_obTujuanList,"ob_tujuan_input");
+  }catch(e){}
+}
+async function loadTujuanHVSGlobal(){
+  const inch=document.getElementById("globalIncharge").value;
+  const svc=document.getElementById("hvs_service").value;
+  _hvsTujuanList=[];
+  const list=document.getElementById("hvs_tujuan_list");
+  list.innerHTML='';
+  if(!inch||!svc)return;
+  try{
+    const d=await dbGet("data_routing",`incharge=eq.${inch}&service=eq.${svc}&select=tujuan`);
+    _hvsTujuanList=d.map(r=>r.tujuan);
+    buildComboList("hvs_tujuan_list",_hvsTujuanList,"hvs_tujuan_input");
+  }catch(e){}
+}
+
+// ============================================================
+// UNIQUE TRACK NUMBER GENERATOR
+// ============================================================
+function genTrackNo(prefix){
+  const now=new Date();
+  const d=now.toISOString().slice(0,10).replace(/-/g,'');
+  const t=now.getTime().toString().slice(-4);
+  const r=Math.random().toString(36).slice(2,5).toUpperCase();
+  return `${prefix}-${d}-${t}${r}`;
 }
 
 // ============================================================
 // APP INIT
 // ============================================================
-function startApp() {
-  document.getElementById("loginScreen").style.display="none";
-  document.getElementById("appScreen").style.display="block";
-  const user = getSession();
-  document.getElementById("navUser").textContent = user?.username || "-";
-  loadInchargeAll();
-  showPage("dashboard");
-  // On mobile, start collapsed
-  if (window.innerWidth <= 700) {
-    sidebarOpen = true;
-    toggleSidebar();
-  }
+async function loadInchargeAll(){
+  try{
+    const data=await dbGet("data_incharge","select=incharge&order=incharge");
+    _inchargeList=[...new Set(data.map(d=>d.incharge))];
+    ["ib_incharge","sob_incharge","sib_incharge","shvs_incharge","mf_incharge","globalIncharge"].forEach(id=>{
+      const el=document.getElementById(id);if(!el)return;
+      const cur=el.value;
+      el.innerHTML=`<option value="">-- Pilih --</option>`;
+      _inchargeList.forEach(v=>el.innerHTML+=`<option value="${v}">${v}</option>`);
+      if(cur)el.value=cur;
+    });
+  }catch(e){}
 }
 
-window.addEventListener("DOMContentLoaded", () => {
-  document.addEventListener("keydown", e => { if (e.key==="Enter" && document.getElementById("loginScreen").style.display!=="none") handleLogin(); });
-  if (getSession()) startApp();
-  const t = todayDate();
+function startApp(){
+  document.getElementById("loginScreen").style.display="none";
+  document.getElementById("appScreen").style.display="block";
+  const user=getSession();
+  document.getElementById("navUser").textContent=user?.username||"-";
+  loadInchargeAll();
+  showPage("dashboard");
+  if(window.innerWidth<=700){sidebarOpen=true;toggleSidebar();}
+}
+
+window.addEventListener("DOMContentLoaded",()=>{
+  document.addEventListener("keydown",e=>{if(e.key==="Enter"&&document.getElementById("loginScreen").style.display!=="none")handleLogin();});
+  if(getSession())startApp();
+  const t=todayDate();
   document.getElementById("mf_filterFrom").value=t;
   document.getElementById("mf_filterTo").value=t;
   document.getElementById("mf_tanggal").value=t;
@@ -769,159 +797,455 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 // ============================================================
-// UI HELPERS
+// UI
 // ============================================================
-const PAGE_TITLES = {
-  dashboard:"📊 Dashboard",ob:"📦 Outbound (OB)",ib:"📥 Inbound (IB)",
-  hvs:"🏷️ HVS",scan:"🔍 Scan",driver:"🚚 Driver",manifest:"📋 Manifest"
-};
+const PAGE_TITLES={dashboard:"📊 Dashboard",ob:"📦 Outbound (OB)",ib:"📥 Inbound (IB)",hvs:"🏷️ HVS",scan:"🔍 Scan",driver:"🚚 Driver",manifest:"📋 Manifest"};
 
-function showPage(name) {
-  document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
-  document.querySelectorAll(".nav-item").forEach(a => a.classList.remove("active"));
+function showPage(name){
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+  document.querySelectorAll(".nav-item").forEach(a=>a.classList.remove("active"));
   document.getElementById("page-"+name).classList.add("active");
   document.getElementById("nav-"+name).classList.add("active");
-  document.getElementById("topbarTitle").textContent = PAGE_TITLES[name]||name;
-  const loaders = {dashboard:loadDashboard,ob:loadOB,ib:loadIB,hvs:loadHVS,scan:initScan,driver:loadDriver,manifest:loadManifest};
-  if (loaders[name]) loaders[name]();
-  // On mobile, close sidebar after nav
-  if (window.innerWidth <= 700 && sidebarOpen) toggleSidebar();
-  // Auto-fill incharge if global is set
-  const gIncharge = document.getElementById("globalIncharge").value;
-  if (gIncharge) {
-    setTimeout(() => {
-      ["ob_incharge","ib_incharge","hvs_incharge","sob_incharge","sib_incharge","shvs_incharge","mf_incharge"].forEach(id => {
-        const el = document.getElementById(id);
-        if (el && !el.value) el.value = gIncharge;
-      });
-    }, 100);
-  }
+  document.getElementById("topbarTitle").textContent=PAGE_TITLES[name]||name;
+  const loaders={dashboard:loadDashboard,ob:()=>{loadOB();},ib:loadIB,hvs:()=>{loadHVS();},scan:initScan,driver:loadDriver,manifest:loadManifest};
+  if(loaders[name])loaders[name]();
+  if(window.innerWidth<=700&&sidebarOpen)toggleSidebar();
+  // auto-fill where relevant
+  const gi=document.getElementById("globalIncharge").value;
+  if(gi){setTimeout(()=>{["ib_incharge","sob_incharge","sib_incharge","shvs_incharge","mf_incharge"].forEach(id=>{const el=document.getElementById(id);if(el&&!el.value)el.value=gi;});},80);}
 }
 
-function showToast(msg, type="success") {
-  const t = document.getElementById("toast");
-  t.textContent=msg; t.className=type; t.style.display="block";
-  setTimeout(()=>t.style.display="none",3000);
-}
-function setLoading(btn, loading) {
-  if (loading) { btn.disabled=true; btn._orig=btn.textContent; btn.textContent="Menyimpan..."; }
-  else { btn.disabled=false; btn.textContent=btn._orig||"Simpan"; }
-}
-function formatDate(str) { if(!str)return"-"; return new Date(str).toLocaleString("id-ID",{dateStyle:"short",timeStyle:"short"}); }
-function formatDateOnly(str) { if(!str)return"-"; return new Date(str).toLocaleDateString("id-ID"); }
-function todayISO() { return new Date().toISOString().slice(0,16); }
-function todayDate() { return new Date().toISOString().slice(0,10); }
-function confirmDelete(cb) { if(confirm("Yakin ingin menghapus data ini?")) cb(); }
-function badgeStatus(s) {
-  if(s==="SELESAI"||s==="SAMPAI") return "badge-green";
-  if(s==="PENDING"||s==="TERLAMBAT") return "badge-red";
-  if(s==="SCAN"||s==="PROSES") return "badge-yellow";
-  return "badge-blue";
-}
-
-// ============================================================
-// INCHARGE LOADER
-// ============================================================
-let _inchargeList = [];
-async function loadInchargeAll() {
-  try {
-    const data = await dbGet("data_incharge","select=incharge&order=incharge");
-    _inchargeList = [...new Set(data.map(d=>d.incharge))];
-    const selIds = ["ob_incharge","ib_incharge","hvs_incharge","sob_incharge","sib_incharge","shvs_incharge","mf_incharge","globalIncharge"];
-    selIds.forEach(id => {
-      const el = document.getElementById(id);
-      if (!el) return;
-      const cur = el.value;
-      el.innerHTML = `<option value="">-- Pilih --</option>`;
-      _inchargeList.forEach(v => el.innerHTML += `<option value="${v}">${v}</option>`);
-      if (cur) el.value = cur;
-    });
-  } catch(e) {}
-}
-
-async function loadTujuanOB() {
-  const inch=document.getElementById("ob_incharge").value;
-  const svc=document.getElementById("ob_service").value;
-  const sel=document.getElementById("ob_tujuan");
-  sel.innerHTML=`<option value="">-- Pilih Tujuan --</option>`;
-  if(!inch||!svc)return;
-  try{const d=await dbGet("data_routing",`incharge=eq.${inch}&service=eq.${svc}&select=tujuan`);d.forEach(r=>sel.innerHTML+=`<option>${r.tujuan}</option>`);}catch(e){}
-}
-async function loadTujuanHVS() {
-  const inch=document.getElementById("hvs_incharge").value;
-  const svc=document.getElementById("hvs_service").value;
-  const sel=document.getElementById("hvs_tujuan");
-  sel.innerHTML=`<option value="">-- Pilih Tujuan --</option>`;
-  if(!inch||!svc)return;
-  try{const d=await dbGet("data_routing",`incharge=eq.${inch}&service=eq.${svc}&select=tujuan`);d.forEach(r=>sel.innerHTML+=`<option>${r.tujuan}</option>`);}catch(e){}
-}
+function showToast(msg,type="success"){const t=document.getElementById("toast");t.textContent=msg;t.className=type;t.style.display="block";setTimeout(()=>t.style.display="none",3000);}
+function setLoading(btn,loading){if(loading){btn.disabled=true;btn._orig=btn.textContent;btn.textContent="Menyimpan...";}else{btn.disabled=false;btn.textContent=btn._orig||"Simpan";}}
+function formatDate(str){if(!str)return"-";return new Date(str).toLocaleString("id-ID",{dateStyle:"short",timeStyle:"short"});}
+function formatDateOnly(str){if(!str)return"-";return new Date(str).toLocaleDateString("id-ID");}
+function todayISO(){return new Date().toISOString().slice(0,16);}
+function todayDate(){return new Date().toISOString().slice(0,10);}
+function confirmDelete(cb){if(confirm("Yakin ingin menghapus?"))cb();}
+function badgeStatus(s){if(s==="SELESAI"||s==="SAMPAI")return"badge-green";if(s==="PENDING"||s==="TERLAMBAT")return"badge-red";if(s==="SCAN"||s==="PROSES")return"badge-yellow";return"badge-blue";}
 
 // ============================================================
 // DASHBOARD
 // ============================================================
-async function loadDashboard() {
+async function loadDashboard(){
   const today=todayDate();
   try{
     const [obD,ibD,hvsD,drvD]=await Promise.all([
       dbGet("ob",`created_date=gte.${today}&select=*&order=created_date.desc`),
       dbGet("ib",`created_date=gte.${today}&select=*&order=created_date.desc`),
-      dbGet("hvs",`created_date=gte.${today}&select=*`),
+      dbGet("hvs",`created_date=gte.${today}&select=*&order=created_date.desc`),
       dbGet("driver","status_berangkat=eq.BERANGKAT&select=*")
     ]);
     document.getElementById("statOB").textContent=obD.length;
     document.getElementById("statIB").textContent=ibD.length;
     document.getElementById("statHVS").textContent=hvsD.length;
     document.getElementById("statDriver").textContent=drvD.length;
-    document.getElementById("tbDashOB").innerHTML=obD.length===0?`<tr><td colspan="7" style="text-align:center;padding:18px;color:#999">Belum ada data OB hari ini</td></tr>`:obD.slice(0,10).map(r=>`<tr><td>${r.no_track||"-"}</td><td>${r.incharge||"-"}</td><td>${r.service||"-"}</td><td>${r.tujuan||"-"}</td><td>${formatDate(r.created_date)}</td><td><span class="badge ${badgeStatus(r.status)}">${r.status||"-"}</span></td><td>${r.total_awb||0}</td></tr>`).join("");
+    document.getElementById("tbDashOB").innerHTML=obD.length===0?`<tr><td colspan="7" style="text-align:center;padding:18px;color:#999">Belum ada data OB hari ini</td></tr>`:obD.slice(0,10).map(r=>`<tr><td><span class="badge badge-blue" style="font-size:.8rem">${r.no_track||"-"}</span></td><td>${r.incharge||"-"}</td><td>${r.service||"-"}</td><td>${r.tujuan||"-"}</td><td>${formatDate(r.created_date)}</td><td><span class="badge ${badgeStatus(r.status)}">${r.status||"-"}</span></td><td><strong>${r.total_awb||0}</strong></td></tr>`).join("");
+    document.getElementById("tbDashHVS").innerHTML=hvsD.length===0?`<tr><td colspan="7" style="text-align:center;padding:18px;color:#999">Belum ada data HVS hari ini</td></tr>`:hvsD.slice(0,10).map(r=>`<tr><td><span class="badge badge-blue" style="font-size:.8rem">${r.no_track||"-"}</span></td><td>${r.incharge||"-"}</td><td>${r.service||"-"}</td><td>${r.tujuan||"-"}</td><td>${formatDate(r.created_date)}</td><td><span class="badge ${badgeStatus(r.status)}">${r.status||"-"}</span></td><td><strong>${r.total_awb||0}</strong></td></tr>`).join("");
     document.getElementById("tbDashIB").innerHTML=ibD.length===0?`<tr><td colspan="7" style="text-align:center;padding:18px;color:#999">Belum ada data IB hari ini</td></tr>`:ibD.slice(0,10).map(r=>`<tr><td>${r.no_hvs||"-"}</td><td>${r.incharge||"-"}</td><td>${r.service||"-"}</td><td>${r.from_loc||"-"}</td><td>${r.tujuan||"-"}</td><td>${formatDate(r.created_date)}</td><td><span class="badge ${badgeStatus(r.status)}">${r.status||"-"}</span></td></tr>`).join("");
   }catch(e){}
 }
 
 // ============================================================
-// OB
+// OB - PHASE 1
 // ============================================================
 let obEditId=null;
+let _currentOB=null; // { id, no_track, incharge, service, tujuan, tujuanList }
+let _obActiveTab='';
+let _obItems=[]; // local cache of items for current ob session
+
 async function loadOB(){
   const tgl=document.getElementById("ob_filterTgl").value;
   let p="select=*&order=created_date.desc&limit=50";
-  if(tgl) p+=`&created_date=gte.${tgl}&created_date=lte.${tgl}T23:59:59`;
+  if(tgl)p+=`&created_date=gte.${tgl}&created_date=lte.${tgl}T23:59:59`;
   try{
     const data=await dbGet("ob",p);
-    document.getElementById("tbOB").innerHTML=data.length===0?`<tr><td colspan="9" style="text-align:center;padding:24px;color:#999">Belum ada data</td></tr>`:data.map((r,i)=>`<tr><td>${i+1}</td><td><strong>${r.no_track||"-"}</strong></td><td>${r.incharge||"-"}</td><td>${r.service||"-"}</td><td>${r.tujuan||"-"}</td><td>${formatDate(r.created_date)}</td><td><span class="badge ${badgeStatus(r.status)}">${r.status||"-"}</span></td><td>${r.total_awb||0}</td><td style="display:flex;gap:5px"><button class="btn btn-sm btn-accent" onclick="editOB(${r.id})">✏️</button><button class="btn btn-sm btn-danger" onclick="hapusOB(${r.id})">🗑️</button></td></tr>`).join("");
-  }catch(e){showToast("Gagal memuat","error");}
+    document.getElementById("tbOB").innerHTML=data.length===0?`<tr><td colspan="9" style="text-align:center;padding:24px;color:#999">Belum ada data</td></tr>`:data.map((r,i)=>`<tr><td>${i+1}</td><td><strong style="font-family:'IBM Plex Mono',monospace;font-size:.82rem">${r.no_track||"-"}</strong></td><td>${r.incharge||"-"}</td><td>${r.service||"-"}</td><td>${r.tujuan||"-"}</td><td>${formatDate(r.created_date)}</td><td><span class="badge ${badgeStatus(r.status)}">${r.status||"-"}</span></td><td>${r.total_awb||0}</td><td style="display:flex;gap:5px"><button class="btn btn-sm btn-primary" onclick="openOBPhase2FromList(${r.id})">📦 Input</button><button class="btn btn-sm btn-accent" onclick="editOB(${r.id})">✏️</button><button class="btn btn-sm btn-danger" onclick="hapusOB(${r.id})">🗑️</button></td></tr>`).join("");
+  }catch(e){showToast("Gagal memuat OB","error");}
 }
+
 async function simpanOB(){
   const btn=document.getElementById("btnObSimpan");
-  const payload={no_track:document.getElementById("ob_no_track").value.trim(),incharge:document.getElementById("ob_incharge").value,service:document.getElementById("ob_service").value,tujuan:document.getElementById("ob_tujuan").value,created_date:document.getElementById("ob_created_date").value||null,status:document.getElementById("ob_status").value,total_awb:parseInt(document.getElementById("ob_total_awb").value)||0,foto_url:document.getElementById("ob_foto_url").value.trim()||null};
-  if(!payload.no_track||!payload.incharge||!payload.tujuan){showToast("Lengkapi No Track, Incharge, Tujuan","error");return;}
+  const inch=document.getElementById("globalIncharge").value;
+  const svc=document.getElementById("ob_service").value;
+  const tujuan=document.getElementById("ob_tujuan_input").value.trim();
+  if(!inch){showToast("Pilih Incharge di pojok kanan atas","error");return;}
+  if(!svc){showToast("Pilih Service","error");return;}
+  if(!tujuan){showToast("Pilih atau ketik Tujuan","error");return;}
+  const noTrack=genTrackNo("OB");
+  const payload={no_track:noTrack,incharge:inch,service:svc,tujuan:tujuan,created_date:document.getElementById("ob_created_date").value||null,status:document.getElementById("ob_status").value,total_awb:0,foto_url:document.getElementById("ob_foto_url").value.trim()||null};
   setLoading(btn,true);
   try{
-    if(obEditId){await dbUpdate("ob",obEditId,payload);showToast("OB diperbarui ✅");obEditId=null;}
-    else{await dbInsert("ob",payload);showToast("OB disimpan ✅");}
-    resetOB();loadOB();
+    const res=await dbInsert("ob",payload);
+    const saved=Array.isArray(res)?res[0]:res;
+    showToast(`OB ${noTrack} dibuat ✅`);
+    // load tujuan list from routing for this incharge+service
+    let tujuanList=_obTujuanList.length>0?[..._obTujuanList]:[tujuan];
+    if(!tujuanList.includes(tujuan))tujuanList.unshift(tujuan);
+    _currentOB={id:saved.id,no_track:noTrack,incharge:inch,service:svc,tujuan:tujuan,tujuanList:tujuanList};
+    _obItems=[];
+    _obActiveTab='';
+    enterOBPhase2();
+    loadOB();
   }catch(e){showToast("Gagal: "+e.message,"error");}
   setLoading(btn,false);
 }
+
+function enterOBPhase2(){
+  document.getElementById("ob-phase1").classList.remove("active");
+  document.getElementById("ob-phase2").classList.add("active");
+  document.getElementById("ob_track_display").textContent=_currentOB.no_track;
+  document.getElementById("ob_track_meta").textContent=`${_currentOB.incharge} · ${_currentOB.service} · Tujuan utama: ${_currentOB.tujuan}`;
+  renderOBTujuanTabs();
+  loadOBItems();
+}
+
+async function openOBPhase2FromList(id){
+  try{
+    const r=(await dbGet("ob",`id=eq.${id}&select=*`))[0];
+    let tujuanList=[];
+    const inch=r.incharge;const svc=r.service;
+    try{const d=await dbGet("data_routing",`incharge=eq.${inch}&service=eq.${svc}&select=tujuan`);tujuanList=d.map(x=>x.tujuan);}catch(e){}
+    if(!tujuanList.includes(r.tujuan))tujuanList.unshift(r.tujuan);
+    _currentOB={id:r.id,no_track:r.no_track,incharge:r.incharge,service:r.service,tujuan:r.tujuan,tujuanList:tujuanList};
+    _obItems=[];_obActiveTab='';
+    enterOBPhase2();
+  }catch(e){showToast("Gagal","error");}
+}
+
+function backToOBPhase1(){
+  document.getElementById("ob-phase1").classList.add("active");
+  document.getElementById("ob-phase2").classList.remove("active");
+  _currentOB=null;_obItems=[];_obActiveTab='';
+  document.getElementById("ob_item_area").innerHTML=`<div style="color:var(--text-light);font-size:.88rem;padding:20px 0">Klik tujuan di atas untuk mulai input barang.</div>`;
+}
+
+function renderOBTujuanTabs(){
+  const tabs=document.getElementById("ob_tujuan_tabs");
+  const countByTujuan={};
+  _obItems.forEach(it=>{countByTujuan[it.tujuan]=(countByTujuan[it.tujuan]||0)+1;});
+  tabs.innerHTML=_currentOB.tujuanList.map(t=>{
+    const cnt=countByTujuan[t]||0;
+    const active=t===_obActiveTab?'active':'';
+    return `<button class="tujuan-tab ${active}" onclick="selectOBTujuanTab('${t}')">${t}<span class="tab-count">${cnt}</span></button>`;
+  }).join('');
+}
+
+function selectOBTujuanTab(tujuan){
+  _obActiveTab=tujuan;
+  renderOBTujuanTabs();
+  renderOBItemInput(tujuan);
+}
+
+function renderOBItemInput(tujuan){
+  const area=document.getElementById("ob_item_area");
+  const itemsForTujuan=_obItems.filter(it=>it.tujuan===tujuan);
+  area.innerHTML=`
+    <div style="font-weight:700;color:var(--primary);margin-bottom:12px;font-size:.95rem">📍 Input Barang → ${tujuan}</div>
+    <div class="item-input-row">
+      <div class="form-group" style="flex:2;min-width:180px">
+        <label>No AWB / Resi</label>
+        <input type="text" id="ob_item_awb" placeholder="Scan atau ketik AWB..." onkeydown="if(event.key==='Enter')addOBItem('${tujuan}')"/>
+      </div>
+      <div class="form-group" style="flex:1;min-width:130px">
+        <label>Keterangan</label>
+        <input type="text" id="ob_item_ket" placeholder="Opsional" onkeydown="if(event.key==='Enter')addOBItem('${tujuan}')"/>
+      </div>
+      <div>
+        <label style="font-size:.75rem;font-weight:600;color:var(--text-light);text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:5px">Aksi</label>
+        <button class="btn btn-primary" onclick="addOBItem('${tujuan}')">➕ Tambah</button>
+      </div>
+    </div>
+    <div style="font-size:.8rem;color:var(--text-light);margin-bottom:10px">Tekan Enter setelah scan AWB untuk langsung menambahkan. Total: <strong>${itemsForTujuan.length} barang</strong></div>
+    <div id="ob_item_minitable"></div>`;
+  setTimeout(()=>{const el=document.getElementById("ob_item_awb");if(el)el.focus();},50);
+  renderOBMiniTable(tujuan);
+}
+
+function renderOBMiniTable(tujuan){
+  const items=_obItems.filter(it=>it.tujuan===tujuan);
+  const el=document.getElementById("ob_item_minitable");
+  if(!el)return;
+  if(items.length===0){el.innerHTML=`<div style="color:var(--text-light);font-size:.85rem;padding:10px 0">Belum ada barang untuk tujuan ini.</div>`;return;}
+  el.innerHTML=`<div class="table-wrap"><table><thead><tr><th>#</th><th>AWB</th><th>Keterangan</th><th>Waktu</th><th>Aksi</th></tr></thead><tbody>${items.map((it,i)=>`<tr><td>${i+1}</td><td><strong style="font-family:'IBM Plex Mono',monospace">${it.awb}</strong></td><td>${it.ket||"-"}</td><td>${formatDate(it.scan_time)}</td><td><button class="btn btn-sm btn-danger" onclick="removeOBItem('${it._localId}','${tujuan}')">🗑️</button></td></tr>`).join('')}</tbody></table></div>`;
+}
+
+let _obItemIdCounter=0;
+async function addOBItem(tujuan){
+  const awbEl=document.getElementById("ob_item_awb");
+  const ketEl=document.getElementById("ob_item_ket");
+  const awb=awbEl.value.trim();
+  if(!awb){showToast("Isi No AWB","error");return;}
+  // check duplicate
+  if(_obItems.find(it=>it.awb===awb&&it.tujuan===tujuan)){showToast("AWB sudah ada untuk tujuan ini","error");awbEl.select();return;}
+  const item={_localId:`ob_${++_obItemIdCounter}`,awb:awb,tujuan:tujuan,ket:ketEl.value.trim(),scan_time:new Date().toISOString(),ob_id:_currentOB.id,no_track:_currentOB.no_track};
+  _obItems.push(item);
+  // save to DB - using scan_ob table as item detail table
+  try{
+    await dbInsert("scan_ob",{no_track:_currentOB.no_track,incharge:_currentOB.incharge,awb_bag:awb,tujuan:tujuan,scan_date:item.scan_time,status:"SCAN",service:_currentOB.service,foto_url:null});
+    // update total_awb in ob table
+    await dbUpdate("ob",_currentOB.id,{total_awb:_obItems.length});
+  }catch(e){console.warn("DB insert item failed",e);}
+  awbEl.value='';ketEl.value='';
+  awbEl.focus();
+  renderOBTujuanTabs();
+  renderOBMiniTable(tujuan);
+  renderOBAllItemsTable();
+  renderOBSummaryStats();
+  showToast(`AWB ${awb} → ${tujuan} ✅`,"success");
+}
+
+function removeOBItem(localId, tujuan){
+  _obItems=_obItems.filter(it=>it._localId!==localId);
+  renderOBTujuanTabs();
+  renderOBMiniTable(tujuan);
+  renderOBAllItemsTable();
+  renderOBSummaryStats();
+  try{dbUpdate("ob",_currentOB.id,{total_awb:_obItems.length});}catch(e){}
+}
+
+function renderOBSummaryStats(){
+  const stats=document.getElementById("ob_summary_stats");
+  const byTujuan={};
+  _obItems.forEach(it=>{byTujuan[it.tujuan]=(byTujuan[it.tujuan]||0)+1;});
+  const keys=Object.keys(byTujuan);
+  if(keys.length===0){stats.innerHTML='<div style="color:var(--text-light);font-size:.85rem">Belum ada barang diinput.</div>';return;}
+  stats.innerHTML=keys.map(t=>`<div class="item-stat ${t===_obActiveTab?'active':''}" onclick="selectOBTujuanTab('${t}')"><div class="item-stat-label">${t}</div><div class="item-stat-val">${byTujuan[t]}</div></div>`).join('');
+  const total=_obItems.length;
+  stats.innerHTML+=`<div class="item-stat" style="border-left-color:var(--accent)"><div class="item-stat-label">Total</div><div class="item-stat-val" style="color:var(--accent)">${total}</div></div>`;
+}
+
+function renderOBAllItemsTable(){
+  const tb=document.getElementById("tbObItems");
+  if(_obItems.length===0){tb.innerHTML=`<tr><td colspan="6" style="text-align:center;padding:14px;color:#999">Belum ada barang</td></tr>`;return;}
+  tb.innerHTML=_obItems.map((it,i)=>`<tr><td>${i+1}</td><td><strong style="font-family:'IBM Plex Mono',monospace">${it.awb}</strong></td><td><span class="badge badge-blue">${it.tujuan}</span></td><td>${it.ket||"-"}</td><td>${formatDate(it.scan_time)}</td><td><button class="btn btn-sm btn-danger" onclick="removeOBItem('${it._localId}','${it.tujuan}')">🗑️</button></td></tr>`).join('');
+}
+
+async function loadOBItems(){
+  // load existing items from scan_ob for this track
+  if(!_currentOB)return;
+  try{
+    const d=await dbGet("scan_ob",`no_track=eq.${_currentOB.no_track}&select=*&order=scan_date.asc`);
+    _obItems=d.map((r,i)=>({_localId:`ob_db_${r.id}`,awb:r.awb_bag,tujuan:r.tujuan,ket:'',scan_time:r.scan_date,ob_id:_currentOB.id,no_track:_currentOB.no_track}));
+  }catch(e){_obItems=[];}
+  renderOBTujuanTabs();
+  renderOBAllItemsTable();
+  renderOBSummaryStats();
+}
+
 async function editOB(id){
   try{
     const r=(await dbGet("ob",`id=eq.${id}&select=*`))[0];
     obEditId=id;
-    document.getElementById("ob_no_track").value=r.no_track||"";
-    document.getElementById("ob_incharge").value=r.incharge||"";
-    await loadTujuanOB();
+    // go back to phase1 and fill
+    backToOBPhase1();
     document.getElementById("ob_service").value=r.service||"";
-    document.getElementById("ob_tujuan").value=r.tujuan||"";
+    document.getElementById("ob_tujuan_input").value=r.tujuan||"";
     document.getElementById("ob_created_date").value=r.created_date?.slice(0,16)||"";
     document.getElementById("ob_status").value=r.status||"PROSES";
-    document.getElementById("ob_total_awb").value=r.total_awb||0;
     document.getElementById("ob_foto_url").value=r.foto_url||"";
-    document.getElementById("btnObSimpan").textContent="✏️ Update";
+    document.getElementById("btnObSimpan").textContent="✏️ Update OB";
     window.scrollTo({top:0,behavior:"smooth"});
   }catch(e){showToast("Gagal","error");}
 }
-async function hapusOB(id){confirmDelete(async()=>{try{await dbDelete("ob",id);showToast("Dihapus");loadOB();}catch(e){showToast("Gagal hapus","error");}});}
-function resetOB(){["ob_no_track","ob_foto_url"].forEach(x=>document.getElementById(x).value="");["ob_incharge","ob_service"].forEach(x=>document.getElementById(x).value="");document.getElementById("ob_tujuan").innerHTML=`<option value="">-- Pilih Tujuan --</option>`;document.getElementById("ob_status").value="PROSES";document.getElementById("ob_total_awb").value="";document.getElementById("ob_created_date").value=todayISO();obEditId=null;document.getElementById("btnObSimpan").textContent="💾 Simpan";}
+async function hapusOB(id){confirmDelete(async()=>{try{await dbDelete("ob",id);showToast("OB dihapus");loadOB();}catch(e){showToast("Gagal","error");}});}
 function clearFilterOB(){document.getElementById("ob_filterTgl").value="";loadOB();}
+
+// ============================================================
+// HVS - PHASE 1 & 2 (same pattern as OB)
+// ============================================================
+let hvsEditId=null;
+let _currentHVS=null;
+let _hvsActiveTab='';
+let _hvsItems=[];
+
+async function loadHVS(){
+  const tgl=document.getElementById("hvs_filterTgl").value;
+  let p="select=*&order=created_date.desc&limit=50";
+  if(tgl)p+=`&created_date=gte.${tgl}&created_date=lte.${tgl}T23:59:59`;
+  try{
+    const data=await dbGet("hvs",p);
+    document.getElementById("tbHVS").innerHTML=data.length===0?`<tr><td colspan="9" style="text-align:center;padding:24px;color:#999">Belum ada data</td></tr>`:data.map((r,i)=>`<tr><td>${i+1}</td><td><strong style="font-family:'IBM Plex Mono',monospace;font-size:.82rem">${r.no_track||"-"}</strong></td><td>${r.incharge||"-"}</td><td>${r.service||"-"}</td><td>${r.tujuan||"-"}</td><td>${formatDate(r.created_date)}</td><td><span class="badge ${badgeStatus(r.status)}">${r.status||"-"}</span></td><td>${r.total_awb||0}</td><td style="display:flex;gap:5px"><button class="btn btn-sm btn-primary" onclick="openHVSPhase2FromList(${r.id})">📦 Input</button><button class="btn btn-sm btn-accent" onclick="editHVS(${r.id})">✏️</button><button class="btn btn-sm btn-danger" onclick="hapusHVS(${r.id})">🗑️</button></td></tr>`).join("");
+  }catch(e){showToast("Gagal memuat HVS","error");}
+}
+
+async function simpanHVS(){
+  const btn=document.getElementById("btnHvsSimpan");
+  const inch=document.getElementById("globalIncharge").value;
+  const svc=document.getElementById("hvs_service").value;
+  const tujuan=document.getElementById("hvs_tujuan_input").value.trim();
+  if(!inch){showToast("Pilih Incharge di pojok kanan atas","error");return;}
+  if(!svc){showToast("Pilih Service","error");return;}
+  if(!tujuan){showToast("Pilih atau ketik Tujuan","error");return;}
+  const noTrack=genTrackNo("HVS");
+  const payload={no_track:noTrack,incharge:inch,service:svc,tujuan:tujuan,created_date:document.getElementById("hvs_created_date").value||null,status:document.getElementById("hvs_status").value,total_awb:0,foto_url:document.getElementById("hvs_foto_url").value.trim()||null};
+  setLoading(btn,true);
+  try{
+    const res=await dbInsert("hvs",payload);
+    const saved=Array.isArray(res)?res[0]:res;
+    showToast(`HVS ${noTrack} dibuat ✅`);
+    let tujuanList=_hvsTujuanList.length>0?[..._hvsTujuanList]:[tujuan];
+    if(!tujuanList.includes(tujuan))tujuanList.unshift(tujuan);
+    _currentHVS={id:saved.id,no_track:noTrack,incharge:inch,service:svc,tujuan:tujuan,tujuanList:tujuanList};
+    _hvsItems=[];_hvsActiveTab='';
+    enterHVSPhase2();
+    loadHVS();
+  }catch(e){showToast("Gagal: "+e.message,"error");}
+  setLoading(btn,false);
+}
+
+function enterHVSPhase2(){
+  document.getElementById("hvs-phase1").classList.remove("active");
+  document.getElementById("hvs-phase2").classList.add("active");
+  document.getElementById("hvs_track_display").textContent=_currentHVS.no_track;
+  document.getElementById("hvs_track_meta").textContent=`${_currentHVS.incharge} · ${_currentHVS.service} · Tujuan utama: ${_currentHVS.tujuan}`;
+  renderHVSTujuanTabs();
+  loadHVSItems();
+}
+
+async function openHVSPhase2FromList(id){
+  try{
+    const r=(await dbGet("hvs",`id=eq.${id}&select=*`))[0];
+    let tujuanList=[];
+    try{const d=await dbGet("data_routing",`incharge=eq.${r.incharge}&service=eq.${r.service}&select=tujuan`);tujuanList=d.map(x=>x.tujuan);}catch(e){}
+    if(!tujuanList.includes(r.tujuan))tujuanList.unshift(r.tujuan);
+    _currentHVS={id:r.id,no_track:r.no_track,incharge:r.incharge,service:r.service,tujuan:r.tujuan,tujuanList:tujuanList};
+    _hvsItems=[];_hvsActiveTab='';
+    enterHVSPhase2();
+  }catch(e){showToast("Gagal","error");}
+}
+
+function backToHVSPhase1(){
+  document.getElementById("hvs-phase1").classList.add("active");
+  document.getElementById("hvs-phase2").classList.remove("active");
+  _currentHVS=null;_hvsItems=[];_hvsActiveTab='';
+  document.getElementById("hvs_item_area").innerHTML=`<div style="color:var(--text-light);font-size:.88rem;padding:20px 0">Klik tujuan di atas untuk mulai input barang.</div>`;
+}
+
+function renderHVSTujuanTabs(){
+  const tabs=document.getElementById("hvs_tujuan_tabs");
+  const countByTujuan={};
+  _hvsItems.forEach(it=>{countByTujuan[it.tujuan]=(countByTujuan[it.tujuan]||0)+1;});
+  tabs.innerHTML=_currentHVS.tujuanList.map(t=>{
+    const cnt=countByTujuan[t]||0;
+    const active=t===_hvsActiveTab?'active':'';
+    return `<button class="tujuan-tab ${active}" onclick="selectHVSTujuanTab('${t}')">${t}<span class="tab-count">${cnt}</span></button>`;
+  }).join('');
+}
+
+function selectHVSTujuanTab(tujuan){
+  _hvsActiveTab=tujuan;
+  renderHVSTujuanTabs();
+  renderHVSItemInput(tujuan);
+}
+
+function renderHVSItemInput(tujuan){
+  const area=document.getElementById("hvs_item_area");
+  const itemsForTujuan=_hvsItems.filter(it=>it.tujuan===tujuan);
+  area.innerHTML=`
+    <div style="font-weight:700;color:var(--primary);margin-bottom:12px;font-size:.95rem">📍 Input Barang → ${tujuan}</div>
+    <div class="item-input-row">
+      <div class="form-group" style="flex:2;min-width:180px">
+        <label>No AWB / Resi</label>
+        <input type="text" id="hvs_item_awb" placeholder="Scan atau ketik AWB..." onkeydown="if(event.key==='Enter')addHVSItem('${tujuan}')"/>
+      </div>
+      <div class="form-group" style="flex:1;min-width:130px">
+        <label>Keterangan</label>
+        <input type="text" id="hvs_item_ket" placeholder="Opsional" onkeydown="if(event.key==='Enter')addHVSItem('${tujuan}')"/>
+      </div>
+      <div>
+        <label style="font-size:.75rem;font-weight:600;color:var(--text-light);text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:5px">Aksi</label>
+        <button class="btn btn-primary" onclick="addHVSItem('${tujuan}')">➕ Tambah</button>
+      </div>
+    </div>
+    <div style="font-size:.8rem;color:var(--text-light);margin-bottom:10px">Tekan Enter setelah scan AWB untuk langsung menambahkan. Total: <strong>${itemsForTujuan.length} barang</strong></div>
+    <div id="hvs_item_minitable"></div>`;
+  setTimeout(()=>{const el=document.getElementById("hvs_item_awb");if(el)el.focus();},50);
+  renderHVSMiniTable(tujuan);
+}
+
+function renderHVSMiniTable(tujuan){
+  const items=_hvsItems.filter(it=>it.tujuan===tujuan);
+  const el=document.getElementById("hvs_item_minitable");
+  if(!el)return;
+  if(items.length===0){el.innerHTML=`<div style="color:var(--text-light);font-size:.85rem;padding:10px 0">Belum ada barang untuk tujuan ini.</div>`;return;}
+  el.innerHTML=`<div class="table-wrap"><table><thead><tr><th>#</th><th>AWB</th><th>Keterangan</th><th>Waktu</th><th>Aksi</th></tr></thead><tbody>${items.map((it,i)=>`<tr><td>${i+1}</td><td><strong style="font-family:'IBM Plex Mono',monospace">${it.awb}</strong></td><td>${it.ket||"-"}</td><td>${formatDate(it.scan_time)}</td><td><button class="btn btn-sm btn-danger" onclick="removeHVSItem('${it._localId}','${tujuan}')">🗑️</button></td></tr>`).join('')}</tbody></table></div>`;
+}
+
+let _hvsItemIdCounter=0;
+async function addHVSItem(tujuan){
+  const awbEl=document.getElementById("hvs_item_awb");
+  const ketEl=document.getElementById("hvs_item_ket");
+  const awb=awbEl.value.trim();
+  if(!awb){showToast("Isi No AWB","error");return;}
+  if(_hvsItems.find(it=>it.awb===awb&&it.tujuan===tujuan)){showToast("AWB sudah ada untuk tujuan ini","error");awbEl.select();return;}
+  const item={_localId:`hvs_${++_hvsItemIdCounter}`,awb:awb,tujuan:tujuan,ket:ketEl.value.trim(),scan_time:new Date().toISOString(),hvs_id:_currentHVS.id,no_track:_currentHVS.no_track};
+  _hvsItems.push(item);
+  try{
+    await dbInsert("scan_hvs",{no_hvs:_currentHVS.no_track,incharge:_currentHVS.incharge,awb:awb,tujuan:tujuan,scan_date:item.scan_time,status:"SCAN",service:_currentHVS.service,foto_url:null});
+    await dbUpdate("hvs",_currentHVS.id,{total_awb:_hvsItems.length});
+  }catch(e){console.warn("DB insert HVS item failed",e);}
+  awbEl.value='';ketEl.value='';
+  awbEl.focus();
+  renderHVSTujuanTabs();
+  renderHVSMiniTable(tujuan);
+  renderHVSAllItemsTable();
+  renderHVSSummaryStats();
+  showToast(`AWB ${awb} → ${tujuan} ✅`,"success");
+}
+
+function removeHVSItem(localId,tujuan){
+  _hvsItems=_hvsItems.filter(it=>it._localId!==localId);
+  renderHVSTujuanTabs();
+  renderHVSMiniTable(tujuan);
+  renderHVSAllItemsTable();
+  renderHVSSummaryStats();
+  try{dbUpdate("hvs",_currentHVS.id,{total_awb:_hvsItems.length});}catch(e){}
+}
+
+function renderHVSSummaryStats(){
+  const stats=document.getElementById("hvs_summary_stats");
+  const byTujuan={};
+  _hvsItems.forEach(it=>{byTujuan[it.tujuan]=(byTujuan[it.tujuan]||0)+1;});
+  const keys=Object.keys(byTujuan);
+  if(keys.length===0){stats.innerHTML='<div style="color:var(--text-light);font-size:.85rem">Belum ada barang diinput.</div>';return;}
+  stats.innerHTML=keys.map(t=>`<div class="item-stat ${t===_hvsActiveTab?'active':''}" onclick="selectHVSTujuanTab('${t}')"><div class="item-stat-label">${t}</div><div class="item-stat-val">${byTujuan[t]}</div></div>`).join('');
+  stats.innerHTML+=`<div class="item-stat" style="border-left-color:var(--accent)"><div class="item-stat-label">Total</div><div class="item-stat-val" style="color:var(--accent)">${_hvsItems.length}</div></div>`;
+}
+
+function renderHVSAllItemsTable(){
+  const tb=document.getElementById("tbHvsItems");
+  if(_hvsItems.length===0){tb.innerHTML=`<tr><td colspan="6" style="text-align:center;padding:14px;color:#999">Belum ada barang</td></tr>`;return;}
+  tb.innerHTML=_hvsItems.map((it,i)=>`<tr><td>${i+1}</td><td><strong style="font-family:'IBM Plex Mono',monospace">${it.awb}</strong></td><td><span class="badge badge-blue">${it.tujuan}</span></td><td>${it.ket||"-"}</td><td>${formatDate(it.scan_time)}</td><td><button class="btn btn-sm btn-danger" onclick="removeHVSItem('${it._localId}','${it.tujuan}')">🗑️</button></td></tr>`).join('');
+}
+
+async function loadHVSItems(){
+  if(!_currentHVS)return;
+  try{
+    const d=await dbGet("scan_hvs",`no_hvs=eq.${_currentHVS.no_track}&select=*&order=scan_date.asc`);
+    _hvsItems=d.map(r=>({_localId:`hvs_db_${r.id}`,awb:r.awb,tujuan:r.tujuan,ket:'',scan_time:r.scan_date,hvs_id:_currentHVS.id,no_track:_currentHVS.no_track}));
+  }catch(e){_hvsItems=[];}
+  renderHVSTujuanTabs();
+  renderHVSAllItemsTable();
+  renderHVSSummaryStats();
+}
+
+async function editHVS(id){
+  try{
+    const r=(await dbGet("hvs",`id=eq.${id}&select=*`))[0];
+    hvsEditId=id;
+    backToHVSPhase1();
+    document.getElementById("hvs_service").value=r.service||"";
+    document.getElementById("hvs_tujuan_input").value=r.tujuan||"";
+    document.getElementById("hvs_created_date").value=r.created_date?.slice(0,16)||"";
+    document.getElementById("hvs_status").value=r.status||"PROSES";
+    document.getElementById("hvs_foto_url").value=r.foto_url||"";
+    document.getElementById("btnHvsSimpan").textContent="✏️ Update HVS";
+    window.scrollTo({top:0,behavior:"smooth"});
+  }catch(e){showToast("Gagal","error");}
+}
+async function hapusHVS(id){confirmDelete(async()=>{try{await dbDelete("hvs",id);showToast("HVS dihapus");loadHVS();}catch(e){showToast("Gagal","error");}});}
+function clearFilterHVS(){document.getElementById("hvs_filterTgl").value="";loadHVS();}
 
 // ============================================================
 // IB
@@ -930,11 +1254,11 @@ let ibEditId=null;
 async function loadIB(){
   const tgl=document.getElementById("ib_filterTgl").value;
   let p="select=*&order=created_date.desc&limit=50";
-  if(tgl) p+=`&created_date=gte.${tgl}&created_date=lte.${tgl}T23:59:59`;
+  if(tgl)p+=`&created_date=gte.${tgl}&created_date=lte.${tgl}T23:59:59`;
   try{
     const data=await dbGet("ib",p);
     document.getElementById("tbIB").innerHTML=data.length===0?`<tr><td colspan="10" style="text-align:center;padding:24px;color:#999">Belum ada data</td></tr>`:data.map((r,i)=>`<tr><td>${i+1}</td><td><strong>${r.no_hvs||"-"}</strong></td><td>${r.incharge||"-"}</td><td>${r.service||"-"}</td><td>${r.from_loc||"-"}</td><td>${r.tujuan||"-"}</td><td>${formatDate(r.created_date)}</td><td><span class="badge ${badgeStatus(r.status)}">${r.status||"-"}</span></td><td>${r.total_awb||0}</td><td style="display:flex;gap:5px"><button class="btn btn-sm btn-accent" onclick="editIB(${r.id})">✏️</button><button class="btn btn-sm btn-danger" onclick="hapusIB(${r.id})">🗑️</button></td></tr>`).join("");
-  }catch(e){showToast("Gagal memuat","error");}
+  }catch(e){showToast("Gagal memuat IB","error");}
 }
 async function simpanIB(){
   const btn=document.getElementById("btnIbSimpan");
@@ -970,52 +1294,6 @@ function resetIB(){["ib_no_hvs","ib_from_loc","ib_tujuan","ib_foto_url"].forEach
 function clearFilterIB(){document.getElementById("ib_filterTgl").value="";loadIB();}
 
 // ============================================================
-// HVS
-// ============================================================
-let hvsEditId=null;
-async function loadHVS(){
-  const tgl=document.getElementById("hvs_filterTgl").value;
-  let p="select=*&order=created_date.desc&limit=50";
-  if(tgl) p+=`&created_date=gte.${tgl}&created_date=lte.${tgl}T23:59:59`;
-  try{
-    const data=await dbGet("hvs",p);
-    document.getElementById("tbHVS").innerHTML=data.length===0?`<tr><td colspan="9" style="text-align:center;padding:24px;color:#999">Belum ada data</td></tr>`:data.map((r,i)=>`<tr><td>${i+1}</td><td><strong>${r.no_track||"-"}</strong></td><td>${r.incharge||"-"}</td><td>${r.service||"-"}</td><td>${r.tujuan||"-"}</td><td>${formatDate(r.created_date)}</td><td><span class="badge ${badgeStatus(r.status)}">${r.status||"-"}</span></td><td>${r.total_awb||0}</td><td style="display:flex;gap:5px"><button class="btn btn-sm btn-accent" onclick="editHVS(${r.id})">✏️</button><button class="btn btn-sm btn-danger" onclick="hapusHVS(${r.id})">🗑️</button></td></tr>`).join("");
-  }catch(e){showToast("Gagal memuat","error");}
-}
-async function simpanHVS(){
-  const btn=document.getElementById("btnHvsSimpan");
-  const payload={no_track:document.getElementById("hvs_no_track").value.trim(),incharge:document.getElementById("hvs_incharge").value,service:document.getElementById("hvs_service").value,tujuan:document.getElementById("hvs_tujuan").value,created_date:document.getElementById("hvs_created_date").value||null,status:document.getElementById("hvs_status").value,total_awb:parseInt(document.getElementById("hvs_total_awb").value)||0,foto_url:document.getElementById("hvs_foto_url").value.trim()||null};
-  if(!payload.no_track||!payload.incharge){showToast("Lengkapi No Track, Incharge","error");return;}
-  setLoading(btn,true);
-  try{
-    if(hvsEditId){await dbUpdate("hvs",hvsEditId,payload);showToast("HVS diperbarui ✅");hvsEditId=null;}
-    else{await dbInsert("hvs",payload);showToast("HVS disimpan ✅");}
-    resetHVS();loadHVS();
-  }catch(e){showToast("Gagal: "+e.message,"error");}
-  setLoading(btn,false);
-}
-async function editHVS(id){
-  try{
-    const r=(await dbGet("hvs",`id=eq.${id}&select=*`))[0];
-    hvsEditId=id;
-    document.getElementById("hvs_no_track").value=r.no_track||"";
-    document.getElementById("hvs_incharge").value=r.incharge||"";
-    await loadTujuanHVS();
-    document.getElementById("hvs_service").value=r.service||"";
-    document.getElementById("hvs_tujuan").value=r.tujuan||"";
-    document.getElementById("hvs_created_date").value=r.created_date?.slice(0,16)||"";
-    document.getElementById("hvs_status").value=r.status||"PROSES";
-    document.getElementById("hvs_total_awb").value=r.total_awb||0;
-    document.getElementById("hvs_foto_url").value=r.foto_url||"";
-    document.getElementById("btnHvsSimpan").textContent="✏️ Update";
-    window.scrollTo({top:0,behavior:"smooth"});
-  }catch(e){showToast("Gagal","error");}
-}
-async function hapusHVS(id){confirmDelete(async()=>{try{await dbDelete("hvs",id);showToast("Dihapus");loadHVS();}catch(e){showToast("Gagal hapus","error");}});}
-function resetHVS(){["hvs_no_track","hvs_foto_url"].forEach(x=>document.getElementById(x).value="");document.getElementById("hvs_incharge").value="";document.getElementById("hvs_tujuan").innerHTML=`<option value="">-- Pilih Tujuan --</option>`;document.getElementById("hvs_status").value="PROSES";document.getElementById("hvs_total_awb").value="";document.getElementById("hvs_created_date").value=todayISO();hvsEditId=null;document.getElementById("btnHvsSimpan").textContent="💾 Simpan";}
-function clearFilterHVS(){document.getElementById("hvs_filterTgl").value="";loadHVS();}
-
-// ============================================================
 // SCAN
 // ============================================================
 function switchScanTab(name,btn){
@@ -1047,7 +1325,7 @@ async function loadDriver(){
   try{
     const data=await dbGet("driver","select=*&order=date_berangkat.desc&limit=50");
     document.getElementById("tbDriver").innerHTML=data.length===0?`<tr><td colspan="9" style="text-align:center;padding:24px;color:#999">Belum ada data</td></tr>`:data.map((r,i)=>`<tr><td>${i+1}</td><td><strong>${r.id_driver||"-"}</strong></td><td>${r.from_loc||"-"}</td><td>${r.tujuan||"-"}</td><td>${formatDate(r.date_berangkat)}</td><td><span class="badge ${badgeStatus(r.status_berangkat)}">${r.status_berangkat||"-"}</span></td><td>${formatDate(r.date_sampai)}</td><td><span class="badge ${badgeStatus(r.status_sampai)}">${r.status_sampai||"-"}</span></td><td style="display:flex;gap:5px"><button class="btn btn-sm btn-accent" onclick="editDriver(${r.id})">✏️</button><button class="btn btn-sm btn-danger" onclick="hapusDriver(${r.id})">🗑️</button></td></tr>`).join("");
-    if(!drvEditId) document.getElementById("drv_date_berangkat").value=todayISO();
+    if(!drvEditId)document.getElementById("drv_date_berangkat").value=todayISO();
   }catch(e){showToast("Gagal memuat","error");}
 }
 async function simpanDriver(){
@@ -1092,12 +1370,10 @@ async function loadManifest(){
   const from=document.getElementById("mf_filterFrom").value;
   const to=document.getElementById("mf_filterTo").value;
   let p="select=*&order=tanggal.desc,id.desc&limit=100";
-  if(from) p+=`&tanggal=gte.${from}`;
-  if(to) p+=`&tanggal=lte.${to}`;
+  if(from)p+=`&tanggal=gte.${from}`;if(to)p+=`&tanggal=lte.${to}`;
   try{
     const data=await dbGet("manifest",p);
-    const tb=document.getElementById("tbManifest");
-    const bar=document.getElementById("mfTotalBar");
+    const tb=document.getElementById("tbManifest");const bar=document.getElementById("mfTotalBar");
     if(data.length===0){tb.innerHTML=`<tr><td colspan="7" style="text-align:center;padding:24px;color:#999">Belum ada data</td></tr>`;bar.style.display="none";return;}
     const total=data.reduce((s,r)=>s+(r.jumlah||0),0);
     tb.innerHTML=data.map((r,i)=>`<tr><td>${i+1}</td><td>${formatDateOnly(r.tanggal)}</td><td>${r.incharge||"-"}</td><td>${r.service||"-"}</td><td>${r.tujuan||"-"}</td><td><strong>${r.jumlah||0}</strong></td><td style="display:flex;gap:5px"><button class="btn btn-sm btn-accent" onclick="editManifest(${r.id})">✏️</button><button class="btn btn-sm btn-danger" onclick="hapusManifest(${r.id})">🗑️</button></td></tr>`).join("");
