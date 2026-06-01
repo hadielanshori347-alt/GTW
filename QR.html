@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QR Table — Paste & Generate</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0f12;
+    --surface: #151820;
+    --surface2: #1d2230;
+    --border: #2a3045;
+    --accent: #00e5a0;
+    --accent2: #0099ff;
+    --text: #e8ecf4;
+    --muted: #5a6480;
+    --danger: #ff4d6d;
+    --mono: 'IBM Plex Mono', monospace;
+    --sans: 'IBM Plex Sans', sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Grid background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,229,160,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,229,160,0.03) 1px, transparent 1px);
+    background-size: 32px 32px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrap {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 24px;
+  }
+
+  /* Header */
+  header {
+    display: flex;
+    align-items: flex-end;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .logo-mark {
+    width: 48px; height: 48px;
+    border: 2px solid var(--accent);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+    padding: 6px;
+    flex-shrink: 0;
+  }
+  .logo-mark span {
+    background: var(--accent);
+    display: block;
+  }
+  .logo-mark span:nth-child(3) { background: transparent; border: 1px solid var(--accent); }
+  h1 {
+    font-family: var(--mono);
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+    line-height: 1;
+  }
+  h1 small {
+    display: block;
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--muted);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  /* Paste zone */
+  .paste-zone {
+    background: var(--surface);
+    border: 1.5px dashed var(--border);
+    border-radius: 4px;
+    padding: 28px 24px;
+    margin-bottom: 32px;
+    transition: border-color 0.2s, background 0.2s;
+    position: relative;
+  }
+  .paste-zone.active {
+    border-color: var(--accent);
+    background: rgba(0,229,160,0.04);
+  }
+  .paste-zone label {
+    display: block;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .paste-zone textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 13px;
+    line-height: 1.7;
+    resize: vertical;
+    min-height: 90px;
+    caret-color: var(--accent);
+  }
+  .paste-zone textarea::placeholder { color: var(--muted); }
+
+  .hint {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+    font-size: 12px;
+    color: var(--muted);
+    font-family: var(--mono);
+  }
+  .hint kbd {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 1px 6px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text);
+  }
+
+  /* Controls */
+  .controls {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .col-config {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex: 1;
+    min-width: 200px;
+  }
+  .col-config label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    white-space: nowrap;
+  }
+  .col-config input {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 13px;
+    padding: 6px 10px;
+    width: 60px;
+    text-align: center;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .col-config input:focus { border-color: var(--accent); }
+
+  .btn {
+    padding: 9px 20px;
+    border-radius: 3px;
+    border: 1.5px solid;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-weight: 600;
+  }
+  .btn-primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #000;
+  }
+  .btn-primary:hover { background: #00ffb3; border-color: #00ffb3; }
+  .btn-outline {
+    background: transparent;
+    border-color: var(--border);
+    color: var(--muted);
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* Stats bar */
+  .stats {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 20px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .stats strong { color: var(--accent); }
+
+  /* Table */
+  .table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  thead tr {
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+  }
+  thead th {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 10px 14px;
+    text-align: left;
+    white-space: nowrap;
+  }
+  thead th:first-child { width: 70px; text-align: center; }
+
+  tbody tr {
+    border-bottom: 1px solid var(--border);
+    transition: background 0.1s;
+    animation: rowIn 0.3s ease both;
+  }
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr:hover { background: var(--surface2); }
+
+  @keyframes rowIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  td {
+    padding: 10px 14px;
+    vertical-align: middle;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text);
+    white-space: nowrap;
+  }
+  td:first-child {
+    text-align: center;
+    padding: 8px;
+  }
+  td img {
+    display: block;
+    margin: 0 auto;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    background: #fff;
+    image-rendering: pixelated;
+  }
+
+  .tag {
+    display: inline-block;
+    background: rgba(0,153,255,0.12);
+    border: 1px solid rgba(0,153,255,0.3);
+    color: var(--accent2);
+    border-radius: 3px;
+    padding: 2px 7px;
+    font-size: 11px;
+    font-family: var(--mono);
+    letter-spacing: 0.5px;
+  }
+
+  .row-num {
+    color: var(--muted);
+    font-size: 10px;
+    font-family: var(--mono);
+    user-select: none;
+  }
+
+  /* Empty state */
+  .empty {
+    text-align: center;
+    padding: 64px 24px;
+    color: var(--muted);
+  }
+  .empty .icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+    opacity: 0.3;
+  }
+  .empty p {
+    font-family: var(--mono);
+    font-size: 13px;
+    line-height: 1.8;
+  }
+  .empty strong { color: var(--accent); }
+
+  /* Copy feedback */
+  .toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: var(--surface2);
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 12px;
+    padding: 10px 18px;
+    border-radius: 3px;
+    transform: translateY(80px);
+    opacity: 0;
+    transition: all 0.3s;
+    z-index: 100;
+  }
+  .toast.show { transform: translateY(0); opacity: 1; }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="logo-mark">
+      <span></span><span></span>
+      <span></span><span></span>
+    </div>
+    <h1>QR TABLE
+      <small>Paste web data → auto generate QR</small>
+    </h1>
+  </header>
+
+  <div class="paste-zone" id="pasteZone">
+    <label>▸ Area Paste Data</label>
+    <textarea id="pasteArea" placeholder="Klik di sini lalu Ctrl+V (paste data dari web / tabel lain)&#10;Format: kolom dipisah Tab, baris dipisah Enter&#10;&#10;Contoh:&#10;2026-06-01 13:20	BAG-20260601132019-FX4R2O	BDO-001	BDO-001	GTW-CGK-001"></textarea>
+    <div class="hint">
+      <kbd>Ctrl</kbd>+<kbd>V</kbd> paste dari web/spreadsheet
+      &nbsp;·&nbsp;
+      Kolom dipisah <kbd>Tab</kbd>, baris dipisah <kbd>Enter</kbd>
+    </div>
+  </div>
+
+  <div class="controls">
+    <div class="col-config">
+      <label>Kolom QR (no.):</label>
+      <input type="number" id="qrCol" value="2" min="1" max="20" title="Kolom ke berapa yang dijadikan isi QR (mulai dari 1)">
+    </div>
+    <button class="btn btn-primary" onclick="processData()">⬡ Generate QR</button>
+    <button class="btn btn-outline" onclick="clearAll()">✕ Clear</button>
+    <button class="btn btn-outline" onclick="copyTable()">⎘ Copy Tabel</button>
+  </div>
+
+  <div class="stats" id="stats" style="display:none">
+    <span>Rows: <strong id="statRows">0</strong></span>
+    <span>Cols: <strong id="statCols">0</strong></span>
+    <span>QR dari kolom: <strong id="statQrCol">-</strong></span>
+  </div>
+
+  <div id="output">
+    <div class="empty">
+      <div class="icon">⬡</div>
+      <p>Paste data dari web lain di atas<br>
+      lalu klik <strong>Generate QR</strong><br>
+      QR otomatis dibuat dari kolom yang dipilih</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const pasteArea = document.getElementById('pasteArea');
+const pasteZone = document.getElementById('pasteZone');
+const output    = document.getElementById('output');
+const stats     = document.getElementById('stats');
+
+// Highlight zone on focus
+pasteArea.addEventListener('focus', () => pasteZone.classList.add('active'));
+pasteArea.addEventListener('blur',  () => pasteZone.classList.remove('active'));
+
+// Auto-process on paste
+pasteArea.addEventListener('paste', () => {
+  setTimeout(processData, 100);
+});
+
+function parseData(raw) {
+  return raw.trim().split('\n')
+    .map(r => r.split('\t').map(c => c.trim()))
+    .filter(r => r.some(c => c.length > 0));
+}
+
+function qrUrl(text, size = 80) {
+  return `https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&data=${encodeURIComponent(text)}`;
+}
+
+function processData() {
+  const raw = pasteArea.value.trim();
+  if (!raw) return;
+
+  const rows = parseData(raw);
+  if (!rows.length) return;
+
+  const qrColIdx = Math.max(0, parseInt(document.getElementById('qrCol').value, 10) - 1);
+  const maxCols  = Math.max(...rows.map(r => r.length));
+
+  // Stats
+  document.getElementById('statRows').textContent = rows.length;
+  document.getElementById('statCols').textContent = maxCols;
+  document.getElementById('statQrCol').textContent = qrColIdx + 1;
+  stats.style.display = 'flex';
+
+  // Build header
+  let headers = '<th>QR</th>';
+  for (let i = 0; i < maxCols; i++) {
+    headers += `<th>Kol ${i + 1}</th>`;
+  }
+
+  // Build rows
+  let bodyRows = '';
+  rows.forEach((row, ri) => {
+    const qrVal = row[qrColIdx] || row[0] || '';
+    const img = qrVal
+      ? `<img src="${qrUrl(qrVal)}" width="64" height="64" alt="${qrVal}" loading="lazy">`
+      : '<span style="color:var(--muted);font-size:11px">—</span>';
+
+    let tds = `<td>${img}</td>`;
+    for (let i = 0; i < maxCols; i++) {
+      const val = row[i] || '';
+      // Detect BAG IDs or code patterns
+      const isCode = /^(BAG|BDO|GTW|CGK|[A-Z]{2,}-[A-Z0-9-]{3,})/.test(val);
+      tds += `<td>${isCode ? `<span class="tag">${val}</span>` : val}</td>`;
+    }
+
+    bodyRows += `<tr style="animation-delay:${ri * 30}ms">${tds}</tr>`;
+  });
+
+  output.innerHTML = `
+    <div class="table-wrap">
+      <table id="resultTable">
+        <thead><tr>${headers}</tr></thead>
+        <tbody>${bodyRows}</tbody>
+      </table>
+    </div>`;
+}
+
+function clearAll() {
+  pasteArea.value = '';
+  stats.style.display = 'none';
+  output.innerHTML = `<div class="empty">
+    <div class="icon">⬡</div>
+    <p>Paste data dari web lain di atas<br>
+    lalu klik <strong>Generate QR</strong><br>
+    QR otomatis dibuat dari kolom yang dipilih</p>
+  </div>`;
+}
+
+function copyTable() {
+  const tbl = document.getElementById('resultTable');
+  if (!tbl) { showToast('Belum ada tabel!'); return; }
+  // Copy as tab-separated (no QR col)
+  const rows = [...tbl.querySelectorAll('tbody tr')];
+  const text = rows.map(r =>
+    [...r.querySelectorAll('td')].slice(1).map(td => td.textContent.trim()).join('\t')
+  ).join('\n');
+  navigator.clipboard.writeText(text).then(() => showToast('✓ Tabel ter-copy!'));
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+</script>
+</body>
+</html>
